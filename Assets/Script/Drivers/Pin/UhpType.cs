@@ -270,8 +270,28 @@ public class UhpType
             return false;
         if (!object.Equals(this.elementType, other.elementType))
             return false;
-        if (!object.Equals(this.fields, other.fields))
-            return false;
+
+        if (this.fields == null)
+        {
+            if (other.fields != null)
+                return false;
+        }
+        else
+        {
+            if (other.fields == null)
+                return false;
+            if (this.fields.Count != other.fields.Count)
+                return false;
+            foreach (var field in this.fields)
+            {
+                UhpType type;
+                if (!other.fields.TryGetValue(field.Key, out type))
+                    return false;
+                if (!object.Equals(field.Value, type))
+                    return false;
+            }
+        }
+
         if (!object.Equals(this.discRangeStart, other.discRangeStart))
             return false;
         if (!object.Equals(this.discRangeSize, other.discRangeSize))
@@ -290,7 +310,9 @@ public class UhpType
         hash ^= baseType.GetHashCode();
         hash ^= (dimension != null) ? dimension.GetHashCode() : 0;
         hash ^= (elementType != null) ? elementType.GetHashCode() : 0;
-        hash ^= (fields != null) ? fields.GetHashCode() : 0;
+        if (fields != null)
+            foreach (var field in fields)
+                hash ^= field.Key.GetHashCode() ^ field.Value.GetHashCode();
         hash ^= (discRangeStart != null) ? discRangeStart.GetHashCode() : 0;
         hash ^= (discRangeSize != null) ? discRangeSize.GetHashCode() : 0;
         hash ^= (contRangeStart != null) ? contRangeStart.GetHashCode() : 0;
