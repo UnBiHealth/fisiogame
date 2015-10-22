@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using UnityEngine;
 using UOS;
 
 public class PinDriver : UOSEventDriver, UOSEventListener
@@ -29,7 +30,11 @@ public class PinDriver : UOSEventDriver, UOSEventListener
     /// <summary>
     /// This is Unity, there's no beautiful way to make a singleton...
     /// </summary>
-    public static PinDriver instance { get { return _instance; } }
+    public static PinDriver instance {
+        get {
+            return _instance;
+        }
+    }
 
     private UnityGateway gateway;
     private string instanceId;

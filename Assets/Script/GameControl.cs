@@ -16,6 +16,20 @@ public class GameControl : MonoBehaviour, UOSApplication, Logger
     }
 
     #region Unity
+
+    private static bool created = false;
+
+    void Awake() {
+        // Prevent the creation of duplicate controllers
+        if (!created) {
+            DontDestroyOnLoad(transform.gameObject);
+            created = true;
+        }
+        else {
+            Destroy(this.gameObject);
+        }
+    }
+
     /// <summary>
     /// Called before the first update.
     /// </summary>
@@ -27,7 +41,7 @@ public class GameControl : MonoBehaviour, UOSApplication, Logger
         // Declares the game input pin and registers for change events.
         var pin = new UhpPin();
         pin.name = "punch";
-        pin.type = UhpType.uniform; // [-1, 1)
+        pin.type = UhpType.Continuous(0, 1); // [-1, 1)
         PinDriver.instance.Add(pin);
         PinDriver.instance.PinChanged += OnPinChanged;
     }

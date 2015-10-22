@@ -1,23 +1,35 @@
 ﻿using UnityEngine;
 using UOS;
 
-public class PinTest : MonoBehaviour
-{
-    private float timer = 0;
+public class PinTest : MonoBehaviour {
 
-    void Update()
-    {
-        // Every 3 or 4 seconds generates a new pin value...
-        timer -= Time.deltaTime;
-        if (timer <= 0)
-        {
-            timer += Random.Range(2, 3);
-            float newValue = Random.Range(-1f, 1f);
-            var n = new Notify(PinDriver.UPDATE_EVENT_NAME, PinDriver.DRIVER_NAME);
-            n.AddParameter(PinDriver.PIN_PARAM_NAME, "punch");
-            n.AddParameter(PinDriver.VALUE_PARAM_NAME, newValue.ToString());
-            Debug.Log("uepa: " + newValue);
-            uOS.gateway.Notify(n, uOS.gateway.currentDevice);
+    float newValue;
+
+    void Update() {
+
+        if (Input.GetKeyDown(KeyCode.Space)) {
+            newValue = Random.Range(0f, 1f);
+            GenerateEvent();
         }
+        else if (Input.GetKeyDown(KeyCode.H)) {
+            newValue = 0.777777f;
+            GenerateEvent();
+        }
+        else if (Input.GetKeyDown(KeyCode.M)) {
+            newValue = 0.444444f;
+            GenerateEvent();
+        }
+        else if (Input.GetKeyDown(KeyCode.L)) {
+            newValue = 0.111111f;
+            GenerateEvent();
+        }
+    }
+
+    void GenerateEvent() {
+        var n = new Notify(PinDriver.UPDATE_EVENT_NAME, PinDriver.DRIVER_NAME);
+        n.AddParameter(PinDriver.PIN_PARAM_NAME, "punch");
+        n.AddParameter(PinDriver.VALUE_PARAM_NAME, newValue.ToString());
+        Debug.Log("Pin: " + newValue);
+        uOS.gateway.Notify(n, uOS.gateway.currentDevice);
     }
 }
