@@ -1,14 +1,14 @@
 fileFormatVersion: 2
-guid: 2f3a7ff842a6ade418842ecf6a346a89
-timeCreated: 1444506556
+guid: efe95c1b1e687404385bcee684717f0a
+timeCreated: 1447519318
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: mediumImpact_0
-    21300002: mediumImpact_1
-    21300004: mediumImpact_2
-    21300006: mediumImpact_3
-    21300008: mediumImpact_4
+    21300000: weakImpact_0
+    21300002: weakImpact_1
+    21300004: weakImpact_2
+    21300006: weakImpact_3
+    21300008: weakImpact_4
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -55,55 +55,55 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: mediumImpact_0
+    - name: weakImpact_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 960
-        height: 540
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 83
+        height: 60
+      alignment: 9
+      pivot: {x: .349999994, y: .600000024}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: mediumImpact_1
+    - name: weakImpact_1
       rect:
         serializedVersion: 2
-        x: 960
+        x: 83
         y: 0
-        width: 960
-        height: 540
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 83
+        height: 60
+      alignment: 9
+      pivot: {x: .349999994, y: .600000024}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: mediumImpact_2
+    - name: weakImpact_2
       rect:
         serializedVersion: 2
-        x: 1920
+        x: 166
         y: 0
-        width: 960
-        height: 540
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 83
+        height: 60
+      alignment: 9
+      pivot: {x: .349999994, y: .600000024}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: mediumImpact_3
+    - name: weakImpact_3
       rect:
         serializedVersion: 2
-        x: 2880
+        x: 249
         y: 0
-        width: 960
-        height: 540
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 83
+        height: 60
+      alignment: 9
+      pivot: {x: .349999994, y: .600000024}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: mediumImpact_4
+    - name: weakImpact_4
       rect:
         serializedVersion: 2
-        x: 3840
+        x: 332
         y: 0
-        width: 960
-        height: 540
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 83
+        height: 60
+      alignment: 9
+      pivot: {x: .349999994, y: .600000024}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 

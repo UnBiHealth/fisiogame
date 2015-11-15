@@ -15,9 +15,11 @@ public class TreeImpact : MonoBehaviour {
 	
 	}
 
+    // Shows either low or medium impact attack
     public void Animate(int attackIntensity) {
         animator.SetInteger("attackIntensity", attackIntensity);
     }
+    // Returns to default (empty) animation
     public void AnimationEnd() {
         animator.SetInteger("attackIntensity", 0);
     }
