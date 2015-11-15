@@ -1,9 +1,28 @@
 fileFormatVersion: 2
 guid: 6ca530a4968131c42a21240249a37388
-timeCreated: 1446726458
+timeCreated: 1447592000
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: lenhadorAttackStrong_0
+    21300002: lenhadorAttackStrong_1
+    21300004: lenhadorAttackStrong_2
+    21300006: lenhadorAttackStrong_3
+    21300008: lenhadorAttackStrong_4
+    21300010: lenhadorAttackStrong_5
+    21300012: lenhadorAttackStrong_6
+    21300014: lenhadorAttackStrong_7
+    21300016: lenhadorAttackStrong_8
+    21300018: lenhadorAttackStrong_9
+    21300020: lenhadorAttackStrong_10
+    21300022: lenhadorAttackStrong_11
+    21300024: lenhadorAttackStrong_12
+    21300026: lenhadorAttackStrong_13
+    21300028: lenhadorAttackStrong_14
+    21300030: lenhadorAttackStrong_15
+    21300032: lenhadorAttackStrong_16
+    21300034: lenhadorAttackStrong_17
+    21300036: lenhadorAttackStrong_18
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -26,11 +45,11 @@ TextureImporter:
   cubemapConvolutionSteps: 8
   cubemapConvolutionExponent: 1.5
   seamlessCubemap: 0
-  textureFormat: -1
-  maxTextureSize: 2048
+  textureFormat: -3
+  maxTextureSize: 4096
   textureSettings:
-    filterMode: -1
-    aniso: -1
+    filterMode: 0
+    aniso: 16
     mipBias: -1
     wrapMode: 1
   nPOTScale: 0
@@ -38,7 +57,7 @@ TextureImporter:
   rGBM: 0
   compressionQuality: 50
   allowsAlphaSplitting: 0
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -49,7 +68,197 @@ TextureImporter:
   textureType: 8
   buildTargetSettings: []
   spriteSheet:
-    sprites: []
+    sprites:
+    - name: lenhadorAttackStrong_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2064
+        width: 664
+        height: 516
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: lenhadorAttackStrong_1
+      rect:
+        serializedVersion: 2
+        x: 664
+        y: 2064
+        width: 664
+        height: 516
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: lenhadorAttackStrong_2
+      rect:
+        serializedVersion: 2
+        x: 1328
+        y: 2064
+        width: 664
+        height: 516
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: lenhadorAttackStrong_3
+      rect:
+        serializedVersion: 2
+        x: 1992
+        y: 2064
+        width: 664
+        height: 516
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: lenhadorAttackStrong_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1548
+        width: 664
+        height: 516
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: lenhadorAttackStrong_5
+      rect:
+        serializedVersion: 2
+        x: 664
+        y: 1548
+        width: 664
+        height: 516
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: lenhadorAttackStrong_6
+      rect:
+        serializedVersion: 2
+        x: 1328
+        y: 1548
+        width: 664
+        height: 516
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: lenhadorAttackStrong_7
+      rect:
+        serializedVersion: 2
+        x: 1992
+        y: 1548
+        width: 664
+        height: 516
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: lenhadorAttackStrong_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1032
+        width: 664
+        height: 516
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: lenhadorAttackStrong_9
+      rect:
+        serializedVersion: 2
+        x: 664
+        y: 1032
+        width: 664
+        height: 516
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: lenhadorAttackStrong_10
+      rect:
+        serializedVersion: 2
+        x: 1328
+        y: 1032
+        width: 664
+        height: 516
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: lenhadorAttackStrong_11
+      rect:
+        serializedVersion: 2
+        x: 1992
+        y: 1032
+        width: 664
+        height: 516
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: lenhadorAttackStrong_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 516
+        width: 664
+        height: 516
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: lenhadorAttackStrong_13
+      rect:
+        serializedVersion: 2
+        x: 664
+        y: 516
+        width: 664
+        height: 516
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: lenhadorAttackStrong_14
+      rect:
+        serializedVersion: 2
+        x: 1328
+        y: 516
+        width: 664
+        height: 516
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: lenhadorAttackStrong_15
+      rect:
+        serializedVersion: 2
+        x: 1992
+        y: 516
+        width: 664
+        height: 516
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: lenhadorAttackStrong_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 664
+        height: 516
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: lenhadorAttackStrong_17
+      rect:
+        serializedVersion: 2
+        x: 664
+        y: 0
+        width: 664
+        height: 516
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: lenhadorAttackStrong_18
+      rect:
+        serializedVersion: 2
+        x: 1328
+        y: 0
+        width: 664
+        height: 516
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 
   assetBundleName: 

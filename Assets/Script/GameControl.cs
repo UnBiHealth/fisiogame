@@ -6,82 +6,104 @@ using UOS;
 [RequireComponent(typeof(uOS))]
 public class GameControl : MonoBehaviour, UOSApplication, Logger
 {
-    /// <summary>
-    /// Aux struct for pin event queue.
-    /// </summary>
-    private struct PinEvent
-    {
+    // Aux struct for pin event queue.
+    private struct PinEvent {
         public UhpPin pin;
         public object newValue;
     }
 
     #region Unity
 
-    private static bool created = false;
+    private static GameControl _instance = null;
+
+    public static GameControl instance {
+        get {
+            return _instance;
+        }
+    }
 
     void Awake() {
         // Prevent the creation of duplicate controllers
-        if (!created) {
+        if (_instance == null) {
+            _instance = this;
             DontDestroyOnLoad(transform.gameObject);
-            created = true;
         }
         else {
             Destroy(this.gameObject);
         }
     }
 
-    /// <summary>
-    /// Called before the first update.
-    /// </summary>
-    void Start()
-    {
-        // Starts uOS. PinDriver is declared at uOS settings menu on the editor.
-        uOS.Init(this, this);
+    void Start() {
 
-        // Declares the game input pin and registers for change events.
+        if (instance == this) {
+            // Starts uOS. PinDriver is declared at uOS settings menu on the editor.
+            uOS.Init(this, this);
+        }
+
+        // Declares the game input pins and registers for change events.
         var pin = new UhpPin();
         pin.name = "punch";
         pin.type = UhpType.Continuous(0, 1); // [-1, 1)
+        var exercisePin = new UhpPin();
+        exercisePin.name = "exerciseEnd";
+        exercisePin.type = UhpType.Discrete(0, 2);
+        var sessionPin = new UhpPin();
+        sessionPin.name = "sessionEnd";
+        sessionPin.type = UhpType.Discrete(0, 2);
         PinDriver.instance.Add(pin);
+        PinDriver.instance.Add(exercisePin);
+        PinDriver.instance.Add(sessionPin);
         PinDriver.instance.PinChanged += OnPinChanged;
+
+        registeredEvents.Add("punch", new List<EventHandler>());
+        registeredEvents.Add("exerciseEnd", new List<EventHandler>());
+        registeredEvents.Add("sessionEnd", new List<EventHandler>());
     }
 
-    /// <summary>
-    /// Called once each frame.
-    /// </summary>
+
     void Update()
     {
         ProcessLog();
         ProcessPins();
     }
 
-    /// <summary>
-    /// Enqueues pin event to be processed at Unity thread.
-    /// </summary>
-    /// <param name="pin"></param>
-    /// <param name="newValue"></param>
-    private void OnPinChanged(UhpPin pin, object newValue)
-    {
-        lock (_pin_lock)
-        {
+    // Enqueues pin event to be processed at Unity thread.
+    private void OnPinChanged(UhpPin pin, object newValue) {
+        lock (_pin_lock) {
             pinQueue.Enqueue(new PinEvent { pin = pin, newValue = newValue });
         }
     }
 
+    public delegate void EventHandler(object newValue);
     private object _pin_lock = new object();
     private Queue<PinEvent> pinQueue = new Queue<PinEvent>();
-    /// <summary>
-    /// Flushes pin event queue.
-    /// </summary>
-    private void ProcessPins()
-    {
-        lock (_pin_lock)
-        {
-            while (pinQueue.Count > 0)
-            {
+    private Dictionary<string, List<EventHandler>> registeredEvents = new Dictionary<string, List<EventHandler>>();
+
+    // Flushes pin event queue.
+    private void ProcessPins() {
+        lock (_pin_lock) {
+            while (pinQueue.Count > 0) {
                 var pinEvent = pinQueue.Dequeue();
                 Debug.Log("New pin value for " + pinEvent.pin.name + ": " + pinEvent.newValue);
+                foreach (var e in registeredEvents[pinEvent.pin.name]) {
+                    e(pinEvent.newValue);
+                }
             }
+        }
+    }
+
+    public void RegisterListener(EventHandler handler, string eventName) {
+        if (registeredEvents[eventName].Find(e => e == handler) == null) {
+            registeredEvents[eventName].Add(handler);
+        }
+        else {
+            Debug.LogWarning("Attempt at double-registering an event for " + eventName);
+        }
+    }
+
+    public void UnregisterListener(EventHandler handler, string eventName) {
+        if (!registeredEvents[eventName].Remove(handler)) {
+            Debug.LogWarning("Attempted to remove inexistent event for " + eventName);
         }
     }
     #endregion

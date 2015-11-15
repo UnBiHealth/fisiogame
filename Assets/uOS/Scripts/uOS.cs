@@ -74,7 +74,7 @@ public sealed class uOS : MonoBehaviour
         if (_instance == null)
             _instance = this;
         else
-            throw new System.InvalidOperationException("The scene must not contain more than one instance of uOS");
+            Destroy(this);
     }
 
     /// <summary>
