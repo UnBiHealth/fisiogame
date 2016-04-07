@@ -9,3 +9,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Initial.unity
   - enabled: 1
     path: Assets/Scenes/Woodcutting.unity
+  - enabled: 1
+    path: Assets/Scenes/Plaza.unity
+  - enabled: 1
+    path: Assets/Scenes/City.unity

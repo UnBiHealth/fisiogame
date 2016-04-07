@@ -1,0 +1,116 @@
+{
+	"Plaza":
+	{
+		"name": "Praça",
+		"yield": "",
+		"yieldAmount": 0
+	},
+	"House":
+	{
+		"name": "Casa",
+		"yield": "",
+		"yieldAmount": 0
+	},
+	"ToolShack":
+	{
+		"name": "Casa de Ferramentas",
+		"yield": "",
+		"yieldAmount": 0
+	},
+	"SheepPen":
+	{
+		"name": "Cercado de Ovelhas",
+		"yield": "Wool",
+		"yieldAmount": 20
+	},
+	"Windmill":
+	{
+		"name": "Moinho de Vento",
+		"yield": "Food",
+		"yieldAmount": 20
+	},
+	"Smithy":
+	{
+		"name": "Casa de Forja",
+		"yield": "",
+		"yieldAmount": 0
+	},
+	"MayorHall":
+	{
+		"name": "Prefeitura",
+		"yield": "",
+		"yieldAmount": 0
+	},
+	"VegetablePlot":
+	{
+		"name": "Horta",
+		"yield": "Food",
+		"yieldAmount": 20
+	},
+	"Fair":
+	{
+		"name": "Feira",
+		"yield": "Gold",
+		"yieldAmount": 10
+	},
+	"Stable":
+	{
+		"name": "Estábulo",
+		"yield": "",
+		"yieldAmount": 0
+	},
+	"PaperMaker":
+	{
+		"name": "Fábrica de Papel",
+		"yield": "Paper",
+		"yieldAmount": 20
+	},
+	"FabricMaker":
+	{
+		"name": "Fábrica de Tecido",
+		"yield": "Fabric",
+		"yieldAmount": 20
+	},
+	"BrickMaker":
+	{
+		"name": "Olaria",
+		"yield": "Brick",
+		"yieldAmount": 20
+	},
+	"Bank":
+	{
+		"name": "Banco",
+		"yield": "Gold",
+		"yieldAmount": 20
+	},
+	"Studio":
+	{
+		"name": "Estúdio",
+		"yield": "",
+		"yieldAmount": 0
+	},
+	"Tavern":
+	{
+		"name": "Taverna",
+		"yield": "",
+		"yieldAmount": 0
+	},
+	"Museum":
+	{
+		"name": "Museu",
+		"yield": "",
+		"yieldAmount": 0
+	},
+	"Statue":
+	{
+		"name": "Estátua do Fundador",
+		"yield": "",
+		"yieldAmount": 0
+	},
+	"Library":
+	{
+		"name": "Biblioteca Municipal",
+		"yield": "",
+		"yieldAmount": 0
+	}
+}

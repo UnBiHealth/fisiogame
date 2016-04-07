@@ -1,0 +1,321 @@
+{
+	"quest1": {
+		"name": "Um Novo Começo",
+		"description": "Construa uma casa para poder se instalar na vila.",
+		"requirements": {
+			"Wood": 100
+		},
+		"builds": "House",
+		"buildPosition": {
+			"x": 0,
+			"y": 0
+		},
+		"unlockedBy": 0,
+		"minimumSession": 1,
+		"questOpeningEvent": "VillageArrival",
+		"questCompletedEvent": "HouseCompleted"
+	},
+
+	"quest2": {
+		"name": "Introdução à Alvenaria",
+		"description": "Precisamos acomodar um minerador! Construa uma casa de ferramentas.",
+		"requirements": {
+			"Wood": 150
+		},
+		"builds": "ToolHouse",
+		"buildPosition": {
+			"x": 0,
+			"y": 0
+		},
+		"unlockedBy": 1,
+		"minimumSession": 1,
+		"questOpeningEvent": "",
+		"questCompletedEvent": ""
+	},
+
+	"quest3": {
+		"name": "Contando Carneirinhos",
+		"description": "Construa um cercado de ovelhas para termos lã.",
+		"requirements": {
+			"Wood": 150
+		},
+		"builds": "SheepPen",
+		"buildPosition": {
+			"x": 0,
+			"y": 0
+		},
+		"unlockedBy": 1,
+		"minimumSession": 1,
+		"questOpeningEvent": "",
+		"questCompletedEvent": ""
+	},
+
+	"quest4": {
+		"name": "Dom Quixote Não Aprova",
+		"description": "Para podermos processar nossos grãos, construa um moinho de vento.",
+		"requirements": {
+			"Wood": 150,
+			"Fabric": 50
+		},
+		"builds": "Windmill",
+		"buildPosition": {
+			"x": 0,
+			"y": 0
+		},
+		"unlockedBy": 1,
+		"minimumSession": 1,
+		"questOpeningEvent": "",
+		"questCompletedEvent": ""
+	},
+
+	"quest5": {
+		"name": "Casa de Ferreiro, Espeto de Metal",
+		"description": "Um ferreiro chegou à cidade! Prepare uma casa de forja.",
+		"requirements": {
+			"Wood": 200,
+			"Stone": 200
+		},
+		"builds": "Smithy",
+		"buildPosition": {
+			"x": 0,
+			"y": 0
+		},
+		"unlockedBy": 2,
+		"minimumSession": 2,
+		"questOpeningEvent": "",
+		"questCompletedEvent": ""
+	},
+
+	"quest6": {
+		"name": "Representantes do Povo",
+		"description": "Construa um centro administrativo para abrigar nossa prefeitura.",
+		"requirements": {
+			"Wood": 100,
+			"Stone": 100,
+			"Marble": 50
+		},
+		"builds": "MayorHall",
+		"buildPosition": {
+			"x": 0,
+			"y": 0
+		},
+		"unlockedBy": 2,
+		"minimumSession": 2,
+		"questOpeningEvent": "",
+		"questCompletedEvent": ""
+	},
+
+	"quest7": {
+		"name": "Coma Suas Verduras!",
+		"description": "Prepare uma horta para cultivarmos vegetais.",
+		"requirements": {
+			"Wood": 100
+		},
+		"builds": "VegetablePlot",
+		"buildPosition": {
+			"x": 0,
+			"y": 0
+		},
+		"unlockedBy": 2,
+		"minimumSession": 2,
+		"questOpeningEvent": "",
+		"questCompletedEvent": ""
+	},
+
+	"quest8": {
+		"name": "Capitalismo, Parte 1",
+		"description": "A economia da vila melhoraria se tivessemos uma feira. Vamos providenciar?",
+		"requirements": {
+			"Wood": 300
+		},
+		"builds": "Fair",
+		"buildPosition": {
+			"x": 0,
+			"y": 0
+		},
+		"unlockedBy": 5,
+		"minimumSession": 4,
+		"questOpeningEvent": "",
+		"questCompletedEvent": ""
+	},
+
+	"quest9": {
+		"name": "Sonho do Pônei Próprio",
+		"description": "Construa um estábulo. Ter cavalos tornará tarefas da vila mais eficientes.",
+		"requirements": {
+			"Wood": 100,
+			"Metal": 100
+		},
+		"builds": "Stable",
+		"buildPosition": {
+			"x": 0,
+			"y": 0
+		},
+		"unlockedBy": 5,
+		"minimumSession": 4,
+		"questOpeningEvent": "",
+		"questCompletedEvent": ""
+	},
+
+	"quest10": {
+		"name": "Praticando Origami",
+		"description": "Vamos fazer uma fábrica de papel para podermos fazer livros.",
+		"requirements": {
+			"Wood": 100,
+			"Metal": 100
+		},
+		"builds": "PaperMaker",
+		"buildPosition": {
+			"x": 0,
+			"y": 0
+		},
+		"unlockedBy": 5,
+		"minimumSession": 4,
+		"questOpeningEvent": "",
+		"questCompletedEvent": ""
+	},
+
+	"quest11": {
+		"name": "A Última Moda",
+		"description": "Providencie uma fábrica de tecidos.",
+		"requirements": {
+			"Wood": 200,
+			"Metal": 200
+		},
+		"builds": "FabricMaker",
+		"buildPosition": {
+			"x": 0,
+			"y": 0
+		},
+		"unlockedBy": 8,
+		"minimumSession": 5,
+		"questOpeningEvent": "",
+		"questCompletedEvent": ""
+	},
+
+	"quest12": {
+		"name": "Olá, ria!",
+		"description": "Tijolos vão melhorar a construção na cidade. Construa uma olaria.",
+		"requirements": {
+			"Wood": 250,
+			"Metal": 250
+		},
+		"builds": "BrickMaker",
+		"buildPosition": {
+			"x": 0,
+			"y": 0
+		},
+		"unlockedBy": 8,
+		"minimumSession": 5,
+		"questOpeningEvent": "",
+		"questCompletedEvent": ""
+	},
+
+	"quest13": {
+		"name": "Capitalismo, parte 2",
+		"description": "Construa um banco para fortalecer nossa economia.",
+		"requirements": {
+			"Stone": 150,
+			"Metal": 150,
+			"Paper": 50
+		},
+		"builds": "Bank",
+		"buildPosition": {
+			"x": 0,
+			"y": 0
+		},
+		"unlockedBy": 8,
+		"minimumSession": 5,
+		"questOpeningEvent": "",
+		"questCompletedEvent": ""
+	},
+
+	"quest14": {
+		"name": "O Mundo das Artes",
+		"description": "Um artista chegou à cidade! Construa um Estúdio.",
+		"requirements": {
+			"Wood": 300,
+			"Fabric": 100
+		},
+		"builds": "Studio",
+		"buildPosition": {
+			"x": 0,
+			"y": 0
+		},
+		"unlockedBy": 11,
+		"minimumSession": 7,
+		"questOpeningEvent": "",
+		"questCompletedEvent": ""
+	},
+
+	"quest15": {
+		"name": "Fim da Lei Seca",
+		"description": "Uma taverna vai \"motivar\" os trabalhadores. Construa uma.",
+		"requirements": {
+			"Wood": 100,
+			"Stone": 150
+		},
+		"builds": "Tavern",
+		"buildPosition": {
+			"x": 0,
+			"y": 0
+		},
+		"unlockedBy": 11,
+		"minimumSession": 7,
+		"questOpeningEvent": "",
+		"questCompletedEvent": ""
+	},
+
+	"quest16": {
+		"name": "Uma Rica História",
+		"description": "Para preservar a história de nosso povo, foi requisitado um museu.",
+		"requirements": {
+			"Brick": 100,
+			"Gold": 150
+		},
+		"builds": "Museum",
+		"buildPosition": {
+			"x": 0,
+			"y": 0
+		},
+		"unlockedBy": 11,
+		"minimumSession": 7,
+		"questOpeningEvent": "",
+		"questCompletedEvent": ""
+	},
+
+	"quest17": {
+		"name": "Honra aos Ancestrais",
+		"description": "O Artista requer materiais para fazer uma homenagem ao fundador da vila.",
+		"requirements": {
+			"Marble": 200
+		},
+		"builds": "Statue",
+		"buildPosition": {
+			"x": 0,
+			"y": 0
+		},
+		"unlockedBy": 14,
+		"minimumSession": 9,
+		"questOpeningEvent": "",
+		"questCompletedEvent": ""
+	},
+
+	"quest18": {
+		"name": "Do A ao Z",
+		"description": "Os habitantes querem ler! Construa uma biblioteca.",
+		"requirements": {
+			"Marble": 150,
+			"Paper": 300
+		},
+		"builds": "Library",
+		"buildPosition": {
+			"x": 0,
+			"y": 0
+		},
+		"unlockedBy": 17,
+		"minimumSession": 11,
+		"questOpeningEvent": "",
+		"questCompletedEvent": ""
+	}
+}

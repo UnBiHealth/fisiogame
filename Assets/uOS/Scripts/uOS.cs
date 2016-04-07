@@ -8,10 +8,10 @@ using UOS;
 /// </summary>
 public sealed class uOS : MonoBehaviour
 {
-    private static Logger _logger;
+    private static UOS.Logger _logger;
     private static uOS _instance;
 
-    private static Logger logger
+    private static UOS.Logger logger
     {
         get
         {
@@ -110,7 +110,7 @@ public sealed class uOS : MonoBehaviour
     /// </summary>
     /// <param name="app">The instance of of UOSApplication that will handle app service calls (it may be null).</param>
     /// <param name="plogger"></param>
-    public static void Init(UOSApplication app, Logger plogger = null)
+    public static void Init(UOSApplication app, UOS.Logger plogger = null)
     {
         if (!ready)
         {

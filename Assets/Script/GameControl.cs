@@ -4,7 +4,7 @@ using UOS;
 
 
 [RequireComponent(typeof(uOS))]
-public class GameControl : MonoBehaviour, UOSApplication, Logger
+public class GameControl : MonoBehaviour, UOSApplication, UOS.Logger
 {
     // Aux struct for pin event queue.
     private struct PinEvent {
@@ -41,23 +41,18 @@ public class GameControl : MonoBehaviour, UOSApplication, Logger
         }
 
         // Declares the game input pins and registers for change events.
-        var pin = new UhpPin();
-        pin.name = "punch";
-        pin.type = UhpType.Continuous(0, 1); // [-1, 1)
-        var exercisePin = new UhpPin();
-        exercisePin.name = "exerciseEnd";
-        exercisePin.type = UhpType.Discrete(0, 2);
-        var sessionPin = new UhpPin();
-        sessionPin.name = "sessionEnd";
-        sessionPin.type = UhpType.Discrete(0, 2);
-        PinDriver.instance.Add(pin);
-        PinDriver.instance.Add(exercisePin);
-        PinDriver.instance.Add(sessionPin);
+        var punchPin = new UhpPin();
+        punchPin.name = "punch";
+        punchPin.type = UhpType.Continuous(0, 1); // [-1, 1)
+        var repetitionsPin = new UhpPin();
+        repetitionsPin.name = "repetitions";
+        repetitionsPin.type = UhpType.Discrete(0, 2);
+        PinDriver.instance.Add(punchPin);
+        PinDriver.instance.Add(repetitionsPin);
         PinDriver.instance.PinChanged += OnPinChanged;
 
-        registeredEvents.Add("punch", new List<EventHandler>());
-        registeredEvents.Add("exerciseEnd", new List<EventHandler>());
-        registeredEvents.Add("sessionEnd", new List<EventHandler>());
+        registeredEvents.Add(punchPin.name, new List<EventHandler>());
+        registeredEvents.Add(repetitionsPin.name, new List<EventHandler>());
     }
 
 

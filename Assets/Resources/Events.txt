@@ -1,0 +1,14 @@
+{
+	"VillageArrival":
+	{
+		"questsUnlocked": [],
+		"charactersUnlocked": [
+			"Lumberjack"
+		],
+		"script": [
+			"<speaker=Lumberjack, side=left>Teste!",
+			"Testando!",
+			"<speaker=Lumberjack, side=right>Oioi!"
+		]
+	}
+}
