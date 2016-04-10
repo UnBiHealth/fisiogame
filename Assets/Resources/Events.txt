@@ -1,14 +1,16 @@
 {
-	"VillageArrival":
+	"Demo":
 	{
 		"questsUnlocked": [],
 		"charactersUnlocked": [
-			"Lumberjack"
+			"lumberjack"
 		],
 		"script": [
-			"<speaker=Lumberjack, side=left>Teste!",
-			"Testando!",
-			"<speaker=Lumberjack, side=right>Oioi!"
+			"%leftSpeaker=Lumberjack, %speed=0.2",
+			"Alô?",
+			"Tem alguém aí? Não é possível que eu esteja só :(",
+			"%rightSpeaker=Lumberjack, %speed=0.5",
+			"QUAL É A DA BADERNA, VELHO, NA BOA?? QUETA AE OW"
 		]
 	}
 }

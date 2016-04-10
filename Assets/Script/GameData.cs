@@ -61,7 +61,7 @@ public class GameData : MonoBehaviour {
             events.Add(evt.Key, new EventData(obj["questsUnlocked"] as List<object>, obj["charactersUnlocked"] as List<object>, obj["script"] as List<object>));
         }
 
-        characters.Add("Lumberjack", new CharacterData(lumberjackName, lumberjackDefaultSprite));
+        characters.Add("lumberjack", new CharacterData(lumberjackName, lumberjackDefaultSprite));
         /*
         foreach (var v in buildings) {
             Debug.Log(v.Value);

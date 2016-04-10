@@ -4,29 +4,33 @@ using System.Collections;
 
 public class SceneController : MonoBehaviour {
 
-    public ListView questListView;
-    public GameObject plazaContainer;
-    public GameObject cityMap;
-    public GameObject cityHUD;
-        
+    [SerializeField]
+    ListView questListView;
+    [SerializeField]
+    GameObject plazaContainer;
+    [SerializeField]
+    GameObject cityMap;
+    [SerializeField]
+    GameObject cityHUD;
+    [SerializeField]
+    DialogueController dialogueController;
+    
     public static SceneController instance { get; private set; }
 
 
     void Start() {
-        if (instance == null) {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else if (instance != this) {
-            Destroy(this.gameObject);
-            return;
-        }
+        instance = this;
         GoToPlaza();
+        dialogueController.Play("Demo");
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
+    }
+
+    void OnDestroy() {
+        instance = null;
     }
 
     public void GoToMap() {

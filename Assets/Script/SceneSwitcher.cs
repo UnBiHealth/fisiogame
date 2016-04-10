@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class SceneSwitcher : MonoBehaviour {
 
@@ -10,6 +11,6 @@ public class SceneSwitcher : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        Application.LoadLevel("Woodcutting");
+        SceneManager.LoadScene("Woodcutting");
 	}
 }
