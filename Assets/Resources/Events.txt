@@ -6,11 +6,67 @@
 			"lumberjack"
 		],
 		"script": [
-			"%leftSpeaker=Lumberjack, %speed=0.2",
+			"%useColoredHighlight=true, %leftSpeaker=Dracula",
+			"%rightSpeaker=Richter, %frameInterval=2",
+			"Die monster. You don't belong in this world!",
+			"%do:highlightLeft",
+			"It was not by my hand that I was once again given flesh.",
+			"I was called here by humans who wish to pay me tribute.",
+			"%do:highlightRight",
+			"Tribute? You steal men's souls, and make them your slaves!",
+			"%do:highlightLeft",
+			"Perhaps the same could be said of all religions... ",
+			"%do:highlightRight",
+			"Your words are as empty as your soul!",
+			"Mankind ill needs a savior such as you!",
+			"%do:highlightLeft",
+			"What is a man?\nA miserable little pile of secrets.",
+			"But enough talk... Have at you!"
+		]
+	},
+	"Demo4":
+	{
+		"questsUnlocked": [],
+		"charactersUnlocked": [
+			"lumberjack"
+		],
+		"script": [
+			"%leftSpeaker=Lumberjack, %frameInterval=3",
+			"It's a beautiful day outside.",
+			"Flowers are blooming, birds are singing... ",
+			"On days like these, kids like you... ",
+			"%delay=120",
+			"%frameInterval=10, %mute=true",
+			"Should be burning in hell."
+		]
+	},
+	"Demo2":
+	{
+		"questsUnlocked": [],
+		"charactersUnlocked": [
+			"lumberjack"
+		],
+		"script": [
+			"%leftSpeaker=Lumberjack, %frameInterval=3",
+			"Eu fiz um sistema de diálogo mó daora!",
+			"Vocês não acham incrível? Eu tô amando... Orgulhinho!",
+			"%rightSpeaker=OtherLumberjack, %frameInterval=2",
+			"TÁ MUITO MASSA ISSO AQUI! OLHA EU FALANDO!"
+		]
+	},
+	"Demo3":
+	{
+		"questsUnlocked": [],
+		"charactersUnlocked": [
+			"lumberjack"
+		],
+		"script": [
+			"%leftSpeaker=Lumberjack, %frameInterval=3",
 			"Alô?",
+			"%delay=30",
 			"Tem alguém aí? Não é possível que eu esteja só :(",
-			"%rightSpeaker=Lumberjack, %speed=0.5",
-			"QUAL É A DA BADERNA, VELHO, NA BOA?? QUETA AE OW"
+			"%rightSpeaker=Lumberjack, %frameInterval=2",
+			"QUAL É A DA BADERNA, VELHO, NA BOA? QUETA AE OW"
 		]
 	}
 }

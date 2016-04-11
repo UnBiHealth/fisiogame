@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System.Linq;
 
 public class DialogueController : MonoBehaviour {
 
@@ -18,23 +19,42 @@ public class DialogueController : MonoBehaviour {
     [SerializeField]
     Animator arrowAnimator;
 
-    float typewriterSpeed;
+    char[] intervalChars = { '?', '!', '.' };
+    char[] halfIntervalChars = { ',', ':', ';' };
+    char[] soundlessChars = { ' ', ',', ':', ';' };
+    Color normalColor = new Color(1f, 1f, 1f, 1f);
+    Color shadowedColor = new Color(0.5f, 0.5f, 0.5f, 1f);
+
+    int frameInterval;
+    int frameCounter;
+    int halfIntervalTime;
+    int intervalTime;
+    bool muted;
+    bool useColoredHighlight;
 
     Animator animator;
+    AudioSource audioSource;
     bool isReady;
     bool isTypewriting;
 
     GameData.EventData currentEvent;
+    GameData.CharacterData leftCharacter;
+    GameData.CharacterData rightCharacter;
     int lineIndex;
     string currentText;
-    float typewriterPosition;
+    int typewriterPosition;
 
     public void Play(string eventName) {
         currentEvent = GameData.instance.GetEventData(eventName);
         if (currentEvent != null) {
             isRunning = true;
             lineIndex = 0;
-            typewriterSpeed = 0.5f;
+            frameInterval = 1;
+            halfIntervalTime = 30;
+            intervalTime = 60;
+            frameCounter = 1;
+            muted = false;
+            useColoredHighlight = false;
             Show();
         }
         else {
@@ -47,6 +67,7 @@ public class DialogueController : MonoBehaviour {
         isReady = false;
         isTypewriting = false;
         animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
         typewriterPosition = 0;
     }
 
@@ -63,30 +84,58 @@ public class DialogueController : MonoBehaviour {
             else if (Input.GetMouseButtonDown(0)) {
                 if (typewriterPosition >= currentText.Length) {
                     isTypewriting = false; // will trigger parsing next line
+                    dialogue.text = "";
                 }
                 else {
-                    UpdateText((float)currentText.Length);
+                    UpdateText(true);
                 }
             }
             else {
-                UpdateText(typewriterSpeed);
+                UpdateText(false);
             }
         }
 	}
 
-    void UpdateText(float increment) {
-        typewriterPosition += increment;
-        if ((int)typewriterPosition >= currentText.Length) {
+    void UpdateText(bool skipToEnd) {
+        if (skipToEnd || frameInterval == 0) {
+            typewriterPosition = currentText.Length;
             dialogue.text = currentText;
             ShowArrow();
         }
-        else {
-            dialogue.text = currentText.Substring(0, (int)typewriterPosition);
+        frameCounter--;
+        if (frameCounter <= 0) {
+            typewriterPosition += 1;
+            if (typewriterPosition >= currentText.Length) {
+                dialogue.text = currentText;
+                ShowArrow();
+            }
+            else {
+                dialogue.text = currentText.Substring(0, typewriterPosition);
+                char currentChar = currentText[typewriterPosition - 1];
+                char nextChar = (typewriterPosition + 1 >= currentText.Length ? '\0' : currentText[typewriterPosition]);
+                if (intervalChars.Contains(currentChar) && !intervalChars.Contains(nextChar)) {
+                    frameCounter = intervalTime;
+                }
+                else if (halfIntervalChars.Contains(currentChar) && !halfIntervalChars.Contains(nextChar)) {
+                    frameCounter = halfIntervalTime;
+                }
+                else {
+                    frameCounter = frameInterval;
+                }
+                if (!muted && !soundlessChars.Contains(currentText[typewriterPosition - 1])) {
+                    EmitSound();
+                }
+            }
         }
+    }
+
+    void EmitSound() {
+        audioSource.Play();
     }
 
     void ParseLine() {
         if (lineIndex >= currentEvent.script.Count) {
+            HideArrow();
             Hide();
             return;
         }
@@ -99,7 +148,10 @@ public class DialogueController : MonoBehaviour {
 
             foreach (var statement in statements) {
                 if (statement.Contains("=")) {
-                    ParseAssignment(statement);
+                    ParseAssignment(statement); 
+                }
+                else if (statement.Contains("do:")) {
+                    ParseDo(statement);
                 }
                 else if (statement.Replace(" ", "").Length == 0) {
                     continue;
@@ -120,12 +172,12 @@ public class DialogueController : MonoBehaviour {
         char[] delims = { ' ', '=' };
         string[] arguments = statement.Split(delims);
         if (arguments.Length != 2) {
-            Debug.Log("DialogueController Warning - Parse error at statement \"" + statement + "\" - Too many arguments");
+            Debug.Log("DialogueController Warning - Parse error at statement \"" + statement + "\" - Invalid number of arguments");
             return;
         }
         switch (arguments[0]) {
             case "leftspeaker":
-                GameData.CharacterData leftCharacter = GameData.instance.GetCharacterData(arguments[1]);
+                leftCharacter = GameData.instance.GetCharacterData(arguments[1]);
                 if (leftCharacter == null) {
                     Debug.Log("DialogueController Warning - Parse error at statement \"" + statement + "\" - Invalid speaker");
                     return;
@@ -134,9 +186,13 @@ public class DialogueController : MonoBehaviour {
                 speakerName.text = leftCharacter.name;
                 leftSpeaker.SetNativeSize();
                 leftSpeaker.GetComponent<RectTransform>().sizeDelta *= 2.0f;
+                leftSpeaker.color = normalColor;
+                if (useColoredHighlight) {
+                    rightSpeaker.color = shadowedColor;
+                }
                 break;
             case "rightspeaker":
-                GameData.CharacterData rightCharacter = GameData.instance.GetCharacterData(arguments[1]);
+                rightCharacter = GameData.instance.GetCharacterData(arguments[1]);
                 if (rightCharacter == null) {
                     Debug.Log("DialogueController Warning - Parse error at statement \"" + statement + "\" - Invalid speaker");
                     return;
@@ -145,22 +201,93 @@ public class DialogueController : MonoBehaviour {
                 speakerName.text = rightCharacter.name;
                 rightSpeaker.SetNativeSize();
                 rightSpeaker.GetComponent<RectTransform>().sizeDelta *= 2.0f;
+                rightSpeaker.color = normalColor;
+                if (useColoredHighlight) {
+                    leftSpeaker.color = shadowedColor;
+                }
                 break;
-            case "speed":
+            case "frameinterval":
                 try {
-                    float newSpeed = float.Parse(arguments[1], System.Globalization.CultureInfo.InvariantCulture);
-                    if (newSpeed <= 0.0f) {
-                        Debug.Log("DialogueController Warning - Parse error at statement \"" + statement + "\" - Speed must be higher than zero");
+                    int newFrameInterval = int.Parse(arguments[1]);
+                    if (newFrameInterval < 0) {
+                        Debug.Log("DialogueController Warning - Parse error at statement \"" + statement + "\" - Frame interval cannot be negative");
                         return;
                     }
-                    typewriterSpeed = newSpeed;
+                    frameInterval = newFrameInterval;
                 }
                 catch (System.Exception e) {
-                    Debug.Log("DialogueController Warning - Parse error at statement \"" + statement + "\" - Invalid speed");
+                    Debug.Log("DialogueController Warning - Parse error at statement \"" + statement + "\" - Invalid frame interval");
+                }
+                break;
+            case "delay":
+                try {
+                    int newDelay = int.Parse(arguments[1]);
+                    if (newDelay < 0) {
+                        Debug.Log("DialogueController Warning - Parse error at statement \"" + statement + "\" - Delay cannot be negative");
+                        return;
+                    }
+                    frameCounter = newDelay;
+                }
+                catch (System.Exception e) {
+                    Debug.Log("DialogueController Warning - Parse error at statement \"" + statement + "\" - Invalid delay");
+                }
+                break;
+            case "mute":
+                try {
+                    bool newMuted = bool.Parse(arguments[1]);
+                    muted = newMuted;
+                }
+                catch (System.Exception e) {
+                    Debug.Log("DialogueController Warning - Parse error at statement \"" + statement + "\" - Invalid mute boolean value");
+                }
+                break;
+            case "usecoloredhighlight":
+                try {
+                    bool newUseColoredHighlight = bool.Parse(arguments[1]);
+                    useColoredHighlight = newUseColoredHighlight;
+                    if (!useColoredHighlight) {
+                        leftSpeaker.color = normalColor;
+                        rightSpeaker.color = normalColor;
+                    }
+                }
+                catch (System.Exception e) {
+                    Debug.Log("DialogueController Warning - Parse error at statement \"" + statement + "\" - Invalid useColoredHighlight boolean value");
                 }
                 break;
             default:
                 Debug.Log("DialogueController Warning - Parse error at statement \"" + statement + "\" - Invalid assignee");
+                break;
+        }
+    }
+
+    void ParseDo(string statement) {
+        char[] delims = { ' ', ':' };
+        string[] arguments = statement.Split(delims);
+        if (arguments.Length != 2) {
+            Debug.Log("DialogueController Warning - Parse error at statement \"" + statement + "\" - %do must have only one argument");
+            return;
+        }
+        switch (arguments[1]) {
+            case "highlightleft":
+                speakerName.text = leftCharacter.name;
+                leftSpeaker.color = normalColor;
+                rightSpeaker.color = shadowedColor;
+                break;
+            case "highlightright":
+                speakerName.text = rightCharacter.name;
+                leftSpeaker.color = shadowedColor;
+                rightSpeaker.color = normalColor;
+                break;
+            case "hideleft":
+                leftSpeaker.sprite = null;
+                leftSpeaker.GetComponent<RectTransform>().sizeDelta = new Vector2(0, 0);
+                break;
+            case "hideright":
+                rightSpeaker.sprite = null;
+                rightSpeaker.GetComponent<RectTransform>().sizeDelta = new Vector2(0, 0);
+                break;
+            default:
+                Debug.Log("DialogueController Warning - Parse error at statement \"" + statement + "\" - Unknown action");
                 break;
         }
     }
@@ -181,7 +308,7 @@ public class DialogueController : MonoBehaviour {
     }
 
     void HideArrow() {
-        arrowAnimator.SetBool("running", true);
+        arrowAnimator.SetBool("running", false);
     }
 
     public void AnimatorReady() {

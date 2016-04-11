@@ -8,10 +8,12 @@ using JSONObject = System.Collections.Generic.Dictionary<string, object>;
 public class GameData : MonoBehaviour {
     
     [SerializeField]
-    string lumberjackName = "Lenhador";
+    string lumberjackName;
 
     [SerializeField]
     Sprite lumberjackDefaultSprite;
+    [SerializeField]
+    Sprite lumberjackAltSprite;
 
     Dictionary<string, BuildingData> buildings = new Dictionary<string, BuildingData>();
     Dictionary<string, QuestData> quests = new Dictionary<string, QuestData>();
@@ -61,7 +63,10 @@ public class GameData : MonoBehaviour {
             events.Add(evt.Key, new EventData(obj["questsUnlocked"] as List<object>, obj["charactersUnlocked"] as List<object>, obj["script"] as List<object>));
         }
 
-        characters.Add("lumberjack", new CharacterData(lumberjackName, lumberjackDefaultSprite));
+        characters.Add("lumberjack", new CharacterData("Lenhador", lumberjackDefaultSprite));
+
+        characters.Add("dracula", new CharacterData("Dracula", lumberjackDefaultSprite));
+        characters.Add("richter", new CharacterData("Richter", lumberjackAltSprite));
         /*
         foreach (var v in buildings) {
             Debug.Log(v.Value);

@@ -1,16 +1,21 @@
 ﻿using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
+using System.Collections;
 using System.Collections.Generic;
 
 public class CityCursor : MonoBehaviour {
     
     RectTransform rectTransform;
 
-    public Image background;
+    [SerializeField]
+    Image background;
+    [SerializeField]
     public float scrollSpeed;
 
+    [SerializeField]
     public int gridWidth;
+    [SerializeField]
     public int gridHeight;
 
 	// Use this for initialization
