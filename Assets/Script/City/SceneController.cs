@@ -13,7 +13,7 @@ public class SceneController : MonoBehaviour {
     [SerializeField]
     GameObject cityHUD;
     [SerializeField]
-    DialogueController dialogueController;
+    MinigameLoader minigameLoader;
     
     public static SceneController instance { get; private set; }
 
@@ -21,7 +21,7 @@ public class SceneController : MonoBehaviour {
     void Start() {
         instance = this;
         GoToPlaza();
-        dialogueController.Play("Demo");
+        DialogueController.instance.Play("VillageArrival");
 	}
 	
 	// Update is called once per frame
@@ -45,7 +45,11 @@ public class SceneController : MonoBehaviour {
         cityMap.SetActive(false);
     }
 
-    #region TestFunctions
+    public void AttemptToStart(string minigame) {
+        minigameLoader.AttemptConnection(minigame);
+    }
+
+    #region Test Functions
     public void PopulateListView() {
         questListView.Add("Minha");
         questListView.Add("Própria");

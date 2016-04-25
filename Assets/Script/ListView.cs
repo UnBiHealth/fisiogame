@@ -11,6 +11,12 @@ public class ListView : MonoBehaviour {
     [SerializeField]
     int spacing;
 
+    [SerializeField]
+    bool resizeView;
+
+    [SerializeField]
+    int maxViewHeight;
+
     private GameObject viewport;
     private GameObject content;
     private float viewHeight;
@@ -23,7 +29,7 @@ public class ListView : MonoBehaviour {
     public delegate bool DelegateTest(object[] data);
     public delegate bool DelegateCompare(object[] dataA, object[] dataB);
 
-    public void Start() {
+    public void Awake() {
         viewport = transform.FindChild("Viewport").gameObject;
         content  = viewport.transform.FindChild("Content").gameObject;
     }
@@ -34,7 +40,6 @@ public class ListView : MonoBehaviour {
     public void Add(params object[] delegateParams) {
 
         GameObject instance = Instantiate(delegatePrefab);
-
         instance.transform.SetParent(content.transform, false);
         instance.GetComponent<Delegate>().Set(delegateParams);
         instance.GetComponent<Delegate>().index = listModel.Count;
@@ -130,6 +135,15 @@ public class ListView : MonoBehaviour {
 
     public void ResizeView() {
         content.GetComponent<RectTransform>().sizeDelta = new Vector2(content.GetComponent<RectTransform>().sizeDelta.x, viewHeight);
+        if (resizeView) {
+            RectTransform rt = GetComponent<RectTransform>();
+            if (viewHeight > maxViewHeight) {
+                rt.sizeDelta = new Vector2(rt.sizeDelta.x, maxViewHeight);
+            }
+            else {
+                rt.sizeDelta = new Vector2(rt.sizeDelta.x, viewHeight);
+            }
+        }
     }
 
     public void RemakeView() {
@@ -138,7 +152,6 @@ public class ListView : MonoBehaviour {
         foreach (GameObject child in childList) {
             RectTransform rectTransform = child.GetComponent<RectTransform>();
             float itemHeight = rectTransform.sizeDelta.y;
-            Debug.Log(itemHeight);
             child.transform.localPosition = new Vector3(0, -viewHeight, transform.localPosition.z);
 
             if (listModel.Count > 0) {

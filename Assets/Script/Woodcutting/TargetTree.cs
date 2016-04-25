@@ -28,7 +28,6 @@ public class TargetTree : MonoBehaviour {
 	}
 
     public void Damage(int damage) {
-        Debug.Log("Take " + damage);
         hp -= damage;
         animator.SetInteger("hp", hp);
         // If the tree won't fall, let the character charge another attack.

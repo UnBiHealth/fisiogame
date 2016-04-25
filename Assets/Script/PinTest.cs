@@ -7,9 +7,9 @@ public class PinTest : MonoBehaviour {
 
     void Update() {
 
-        if (Input.GetKeyDown(KeyCode.Escape)) {
+        if (Input.GetKeyDown(KeyCode.Return)) {
             newValue = 1.0f;
-            GenerateExitEvent();
+            GenerateRepetitionsEvent();
         }
 
         if (Input.GetKeyDown(KeyCode.Space)) {
@@ -34,15 +34,14 @@ public class PinTest : MonoBehaviour {
         var n = new Notify(PinDriver.UPDATE_EVENT_NAME, PinDriver.DRIVER_NAME);
         n.AddParameter(PinDriver.PIN_PARAM_NAME, "punch");
         n.AddParameter(PinDriver.VALUE_PARAM_NAME, newValue.ToString());
-        Debug.Log("Pin: " + newValue);
         uOS.gateway.Notify(n, uOS.gateway.currentDevice);
     }
 
-    void GenerateExitEvent() {
+    void GenerateRepetitionsEvent() {
         var n = new Notify(PinDriver.UPDATE_EVENT_NAME, PinDriver.DRIVER_NAME);
-        n.AddParameter(PinDriver.PIN_PARAM_NAME, "exerciseEnd");
-        n.AddParameter(PinDriver.VALUE_PARAM_NAME, newValue.ToString());
-        Debug.Log("Fire exit pin");
+        n.AddParameter(PinDriver.PIN_PARAM_NAME, "repetitions");
+        n.AddParameter(PinDriver.VALUE_PARAM_NAME, 20.ToString());
         uOS.gateway.Notify(n, uOS.gateway.currentDevice);
+        Debug.Log("Repetitions event");
     }
 }

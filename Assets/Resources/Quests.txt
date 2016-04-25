@@ -126,7 +126,8 @@
 		"name": "Capitalismo, Parte 1",
 		"description": "A economia da vila melhoraria se tivessemos uma feira. Vamos providenciar?",
 		"requirements": {
-			"Wood": 300
+			"Wood": 300,
+			"Food": 100
 		},
 		"builds": "Fair",
 		"buildPosition": {
@@ -144,7 +145,8 @@
 		"description": "Construa um estábulo. Ter cavalos tornará tarefas da vila mais eficientes.",
 		"requirements": {
 			"Wood": 100,
-			"Metal": 100
+			"Metal": 100, 
+			"Food": 100
 		},
 		"builds": "Stable",
 		"buildPosition": {
@@ -180,7 +182,8 @@
 		"description": "Providencie uma fábrica de tecidos.",
 		"requirements": {
 			"Wood": 200,
-			"Metal": 200
+			"Metal": 200,
+			"Wool": 100
 		},
 		"builds": "FabricMaker",
 		"buildPosition": {
@@ -198,7 +201,8 @@
 		"description": "Tijolos vão melhorar a construção na cidade. Construa uma olaria.",
 		"requirements": {
 			"Wood": 250,
-			"Metal": 250
+			"Metal": 250,
+			"Coal": 50
 		},
 		"builds": "BrickMaker",
 		"buildPosition": {
@@ -235,7 +239,8 @@
 		"description": "Um artista chegou à cidade! Construa um Estúdio.",
 		"requirements": {
 			"Wood": 300,
-			"Fabric": 100
+			"Fabric": 100,
+			"Gold": 50
 		},
 		"builds": "Studio",
 		"buildPosition": {
@@ -252,8 +257,9 @@
 		"name": "Fim da Lei Seca",
 		"description": "Uma taverna vai \"motivar\" os trabalhadores. Construa uma.",
 		"requirements": {
-			"Wood": 100,
-			"Stone": 150
+			"Wood": 200,
+			"Stone": 150,
+			"Food": 150
 		},
 		"builds": "Tavern",
 		"buildPosition": {
@@ -270,6 +276,7 @@
 		"name": "Uma Rica História",
 		"description": "Para preservar a história de nosso povo, foi requisitado um museu.",
 		"requirements": {
+			"Metal": 100,
 			"Brick": 100,
 			"Gold": 150
 		},
@@ -288,7 +295,9 @@
 		"name": "Honra aos Ancestrais",
 		"description": "O Artista requer materiais para fazer uma homenagem ao fundador da vila.",
 		"requirements": {
-			"Marble": 200
+			"Stone": 200,
+			"Marble": 200,
+			"Copper": 100
 		},
 		"builds": "Statue",
 		"buildPosition": {
@@ -305,6 +314,7 @@
 		"name": "Do A ao Z",
 		"description": "Os habitantes querem ler! Construa uma biblioteca.",
 		"requirements": {
+			"Wood": 300,
 			"Marble": 150,
 			"Paper": 300
 		},

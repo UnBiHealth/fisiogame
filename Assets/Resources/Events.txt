@@ -1,17 +1,56 @@
-{
-	"Demo4":
+﻿{
+	"VillageArrival":
 	{
-		"questsUnlocked": [],
-		"charactersUnlocked": [
-			"lumberjack"
-		],
+		"questsUnlocked": [1],
+		"charactersUnlocked": ["lumberjack"],
+		"script": [
+			"%frameInterval=2, %do:autoSkipNext, %autoSkipDelay=60",
+			"%rightSpeaker=mayor",
+			"...",
+			"%do:autoSkipNext",
+			"..........................",
+			"...Oh! Olá! Não te vi aí!",
+			"Quem é você?",
+			"%do:autoSkipNext",
+			"...",
+			"Ah, sim! Me avisaram que você chegaria.",
+			"Sou Fulano, o prefeito. Fico feliz em te conhecer.",
+			"Andavamos precisando de alguém para organizar as coisas.",
+			"Hoje em dia, a burocracia me toma muito tempo...",
+			"Enfim. Espero que goste da nossa pacata vila.",
+			"A primeira coisa que você deve construir é uma <color=#cc0000>casa</color>.",
+			"Afinal, você vai precisar de um lugar para morar!",
+			"Precisaremos de madeira para isso, e sei quem pode nos ajudar.",
+			"%frameInterval=0",
+			"<i>(Fulano pigarreia)</i>",
+			"%frameInterval=1, %do:autoSkipNext",
+			"<size=128>BELTRANOOO!</size>",
+			"%leftSpeaker=lumberjack, %do:autoSkipNext, %do:noLeftSprite",
+			"<size=128>QUE É??</size>",
+			"%frameInterval=2",
+			"Mãe do céu, pra quê gritaria a essa hora do d-",
+			"Oh... Gente nova?",
+			"%do:highlightRight",
+			"Sim! E precisamos da sua ajuda para conseguir madeira.",
+			"%do:highlightLeft",
+			"EU?? O que eu tenho a ver com isso??",
+			"%do:highlightRight",
+			"Eu não conheço outra pessoa com um machado por aqui!",
+			"%do:highlightLeft",
+			"Alguém precisa de uma casa e eu pago o pato! Oras...",
+			"<i>(Beltrano suspira)</i>",
+			"Vem comigo. Vou te ensinar a cuidar das coisas por aqui..."
+		]
+	},
+	"Demo":
+	{
 		"script": [
 			"%alwaysAutoSkip=true",
 			"%autoSkipDelay=90",
-			"%frameInterval=3",
+			"%frameInterval=2",
 			"%useColoredHighlight=true",
-			"%leftSpeaker=Dracula",
-			"%rightSpeaker=Richter",
+			"%leftSpeaker=lumberjack",
+			"%rightSpeaker=farmer",
 			"Die monster. You don't belong in this world!",
 			"%do:highlightLeft",
 			"It was not by my hand that I was once again given flesh.",
@@ -29,12 +68,8 @@
 			"But enough talk... Have at you!"
 		]
 	},
-	"Demo":
-	{
-		"questsUnlocked": [],
-		"charactersUnlocked": [
-			"lumberjack"
-		],
+	"Demo4":
+	{	
 		"script": [
 			"%leftSpeaker=Lumberjack",
 			"<size=108>hOI!!!!!</size>",
@@ -46,35 +81,6 @@
 			"%delay=120",
 			"%frameInterval=10, %mute=true",
 			"<b><color=red>Should be burning in hell.</color></b>"
-		]
-	},
-	"Demo2":
-	{
-		"questsUnlocked": [],
-		"charactersUnlocked": [
-			"lumberjack"
-		],
-		"script": [
-			"%leftSpeaker=Lumberjack, %frameInterval=3",
-			"Eu fiz um sistema de diálogo mó daora!",
-			"Vocês não acham incrível? Eu tô amando... Orgulhinho!",
-			"%rightSpeaker=OtherLumberjack, %frameInterval=2",
-			"TÁ MUITO MASSA ISSO AQUI! OLHA EU FALANDO!"
-		]
-	},
-	"Demo3":
-	{
-		"questsUnlocked": [],
-		"charactersUnlocked": [
-			"lumberjack"
-		],
-		"script": [
-			"%leftSpeaker=Lumberjack, %frameInterval=3",
-			"Alô?",
-			"%delay=30",
-			"Tem alguém aí? Não é possível que eu esteja só :(",
-			"%rightSpeaker=Lumberjack, %frameInterval=2",
-			"QUAL É A DA BADERNA, VELHO, NA BOA? QUETA AE OW"
 		]
 	}
 }

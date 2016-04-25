@@ -37,7 +37,7 @@ public class BackgroundScroller : MonoBehaviour {
 
         public void ResetPosition() {
             Vector3 position = childObject.transform.localPosition;
-            position.x = resetDestination;
+            position.x = resetDestination + (childObject.transform.localPosition.x - resetPosition);
             childObject.transform.localPosition = position;
         }
     }

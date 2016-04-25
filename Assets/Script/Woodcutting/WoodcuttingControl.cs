@@ -1,10 +1,12 @@
 ﻿using UOS;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 
 public class WoodcuttingControl : MonoBehaviour {
 
-    enum LJState { WALK, IDLE, GRAB, CHARGE, ATTACK_WAIT, ATTACK, SCROLL, LEAVE }
+    enum LJState { WALK, IDLE, GRAB, CHARGE, ATTACK_WAIT, ATTACK, SCROLL, LEAVE, STOP }
 
     LJState state = LJState.WALK;
     bool facingRight = true;
@@ -17,10 +19,18 @@ public class WoodcuttingControl : MonoBehaviour {
 
     Animator animator;
 
-    public TargetTree targetTree;
-    public BackgroundScroller background;
-    public TreeImpact impact;
-    public TreeSuperImpact superImpact;
+    [SerializeField]
+    TargetTree targetTree;
+    [SerializeField]
+    BackgroundScroller background;
+    [SerializeField]
+    TreeImpact impact;
+    [SerializeField]
+    TreeSuperImpact superImpact;
+    [SerializeField]
+    Button exitButton;
+    [SerializeField]
+    RewardCounter rewardCounter;
 
 	void Start () {
         // Get the animator and start moving
@@ -28,14 +38,17 @@ public class WoodcuttingControl : MonoBehaviour {
         animator.SetBool("walking", true);
         startPosition = transform.position.x;
 
+        exitButton.enabled = false;
+        exitButton.gameObject.SetActive(false);
+
         // Register the punch event 
         GameControl.instance.RegisterListener(OnPunch, "punch");
-        GameControl.instance.RegisterListener(OnExerciseEnd, "exerciseEnd");
+
+        rewardCounter.SetUp("Wood", "lenhador");
 	}
 
     void OnDestroy () {
         GameControl.instance.UnregisterListener(OnPunch, "punch");
-        GameControl.instance.UnregisterListener(OnExerciseEnd, "exerciseEnd");
     }
 	
 	void Update () {
@@ -55,7 +68,8 @@ public class WoodcuttingControl : MonoBehaviour {
                 transform.Translate(-speed * Time.deltaTime, 0, 0);
             }
             else {
-                Application.LoadLevel("Initial");
+                rewardCounter.Finish();
+                state = LJState.STOP;
             }
         }
 
@@ -90,13 +104,23 @@ public class WoodcuttingControl : MonoBehaviour {
         }
         // Wait for the punch value to change. When it does, an attack is triggered
         else if (state == LJState.ATTACK_WAIT) {
-            if (punch != -1.0f) {
+            if (punch > -1.0f) {
                 // If damage is three, trigger strong attack animation
-                if (punch > 0.66f)
+                if (punch > 0.66f) {
                     animator.SetTrigger("strongAttack");
-                else
+                    rewardCounter.AddHighHit();
+                }
+                else if (punch > 0.33f) {
                     animator.SetTrigger("attack");
+                    rewardCounter.AddMidHit();
+                }
+                else {
+                    animator.SetTrigger("attack");
+                    rewardCounter.AddLowHit();
+                }
                 state = LJState.ATTACK;
+                exitButton.enabled = false;
+                exitButton.gameObject.SetActive(false);
             }
         }
         // Wait for the animation to finish - AttackHit() and AttackFinished() will be called at appropriate times, triggering chains of events with other objects
@@ -113,7 +137,6 @@ public class WoodcuttingControl : MonoBehaviour {
                 background.StopScrolling();
             }
         }
-        
 	}
    
     // Callback for when punch changes
@@ -124,7 +147,8 @@ public class WoodcuttingControl : MonoBehaviour {
 
     // Callback for exercise end
     public void OnExerciseEnd(object newValue) {
-        Debug.Log("We're done here!");
+        timer = 0.2f; // Time character will take to turn back and leave - DO NOT SET AS ZERO.
+        state = LJState.LEAVE;
         leave = true;
     }
 
@@ -138,19 +162,18 @@ public class WoodcuttingControl : MonoBehaviour {
     
     // Called once axe grab animation finishes - only used to keep the state machine in check
     public void GrabbedAxe() {
-        Debug.Log("Grab your axe!");
         state = LJState.CHARGE;
     }
     // Called once charge animation finishes - starts listening to punch and waiting
     public void ChargeFinished() {
-        Debug.Log("Aaaaaand...");
+        exitButton.enabled = true;
+        exitButton.gameObject.SetActive(true);
         state = LJState.ATTACK_WAIT;
         punch = -1.0f;
     }
 
     // Called when the axe touches the tree
     public void AttackHit() {
-        Debug.Log("Hit!");
         int damage = punch < 0.33f ? 1 : punch < 0.66f ? 2 : 3;
         // If damage is 2 or less, use the normal impact animations and damage tree immediately
         if (damage <= 2) {
@@ -165,7 +188,6 @@ public class WoodcuttingControl : MonoBehaviour {
 
     // Called once attack animation finishes. Triggers charge animation.
     public void AttackFinished() {
-        Debug.Log("Whew!");
         // If we're set to leave, don't go to the next tree
         if (leave) {
             timer = 1.0f; // Time character will take to turn back and leave - DO NOT SET AS ZERO.
@@ -180,13 +202,13 @@ public class WoodcuttingControl : MonoBehaviour {
 
     // Called once tree is teleported away. Begins scrolling the scenery towards character
     public void MoveToNextTree() {
+        rewardCounter.AddRandomBonus();
         // If we're set to leave, don't go to the next tree
         if (leave) {
             timer = 0.2f; // Time character will take to turn back and leave - DO NOT SET AS ZERO.
             state = LJState.LEAVE;
         }
         else { 
-            Debug.Log("Get moving!");
             state = LJState.SCROLL;
             animator.SetBool("walking", true);
             targetTree.Scroll();

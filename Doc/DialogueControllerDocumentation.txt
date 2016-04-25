@@ -1,0 +1,50 @@
+DialogueController documentation
+
+Example script:
+
+    %frameInterval=3
+    %useColoredHighlight=true
+    %leftSpeaker=Dracula
+    %rightSpeaker=Richter
+    Die monster. You don't belong in this world!
+    %do:highlightLeft
+    It was not by my hand that I was once again given flesh.
+    I was called here by humans who wish to pay me tribute.
+    %do:highlightRight
+    Tribute? You steal men's souls, and make them your slaves!
+    %do:highlightLeft
+    Perhaps the same could be said of all religions...
+    %do:highlightRight
+    Your words are as empty as your soul!
+    Mankind ill needs a savior such as you!
+    %do:highlightLeft
+    What is a man? A miserable little pile of secrets.
+    But enough talk... Have at you!
+
+Lines:
+ >>> Lines of dialogue are written plainly as a line in the script. They may NOT be joined by assignments, actions, or other lines. Empty lines will be interpreted as a line of speech.
+
+ Lines can contain rich text, but only tags supported by Unity, those being b, i, size and color - see http://docs.unity3d.com/Manual/StyledText.html for more information. Also, note that missing or incorrectly nested tags will cause rendered text to misbehave.
+
+ >>> Assignments are statements of the form %var=value. They can be joined by other assignments or by actions on the same line, but you must guarantee the line starts with a '%' character. Possible assignees include:
+
+ - leftSpeaker [string]: internal name of the character to be set as the left speaker.
+ - rightSpeaker [string]: internal name of the character to be set as the right speaker.
+ - frameInterval [int]: amount of frames between printing one non-interval and non-half-interval character. A value of 1 is the maximum possible speed. A value of zero turns typewriting off, printing whole messages at once. Negative values will fail. Default value is 1.
+ - intervalTime [int]: amount of frames that the game should wait after printing an interval character ('?', '!', '.'). Note that, when printing a sequence of these characters, only the last one will cause a delay. Default value is 60.
+ - haifIntervalTime [int]: amount of frames that the game should wait after printing a half interval character (',', ';', ':'). Regardless of the name, there is no constraint requiring this value to be half of intervalTime. Default value is 30.
+ - delay [int] [single-shot]: amount of frames between reading the next speech line and starting to print it. 
+ - mute [bool]: disables the typewriter sound. Default value is false.
+ - useColoredHighlight [bool]: enables the "shadowed" color the non-speaking character is tinted during another's speech. Default value is true.
+ - alwaysAutoSkip [bool]: Enables automatic skipping to the next line after the current one is fully printed. Default value is false. Effect is applied to all lines until deactivated, if you need this for just one line, %do:autoSkipNext is preferrable. 
+ - autoSkipDelay [int]: Amount of frames waited before auto skipping to the next line, if auto skipping is enabled. Default value is 0 (skip is instantaneous).
+
+Actions:
+ >>> Actions are statements of the form %do:action. They can be grouped together just like assignments, and also share the constraint of requiring a % character. Possible actions include:
+
+ - highlightLeft: highlights the character on the left, setting it as the speaker and, if useColoredHighlight is enabled, tinting the right character with a dark color.
+ - highlightRight: same as highlightLeft, but with switched sides.
+ - hideLeft: Removes the left character from the scene. To make it reappear, a new speaker must be set (highlighting will fail).
+ - hideRight: Same as hideLeft for the right character.
+ - autoSkipNext: Makes the next line not wait for user input to advance the dialogue, but instead, advance as soon as it's done. This works only for one line; if you need a permanent effect, see alwaysAutoSkip. This action also respects the currently set autoSkipDelay.
+    

@@ -46,7 +46,7 @@ public class GameControl : MonoBehaviour, UOSApplication, UOS.Logger
         punchPin.type = UhpType.Continuous(0, 1); // [-1, 1)
         var repetitionsPin = new UhpPin();
         repetitionsPin.name = "repetitions";
-        repetitionsPin.type = UhpType.Discrete(0, 2);
+        repetitionsPin.type = UhpType.Discrete(0, 100);
         PinDriver.instance.Add(punchPin);
         PinDriver.instance.Add(repetitionsPin);
         PinDriver.instance.PinChanged += OnPinChanged;

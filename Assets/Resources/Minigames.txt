@@ -1,0 +1,49 @@
+{
+	"Wood":
+	{
+		"highYield": 7,
+		"midYield": 6,
+		"lowYield": 5,
+		"bonuses": 
+		{
+			"Food": 
+			{
+				"yield": 8,
+				"odds": 0.4
+			}
+		}
+	},
+	"Stone":
+	{
+		"highYield": 7,
+		"midYield": 6,
+		"lowYield": 5,
+		"bonuses": 
+		{
+			"Marble": 
+			{
+				"yield": 14,
+				"odds": 0.3
+			}
+		}
+	},
+	"Metal":
+	{
+		"highYield": 7,
+		"midYield": 6,
+		"lowYield": 5,
+		"bonuses": 
+		{
+			"Copper": 
+			{
+				"yield": 10,
+				"odds": 0.4
+			},
+			"Gold":
+			{
+				"yield": 20,
+				"odds": 0.2
+			}
+		}
+	}
+}

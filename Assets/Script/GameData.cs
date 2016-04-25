@@ -6,19 +6,16 @@ using MiniJSON;
 using JSONObject = System.Collections.Generic.Dictionary<string, object>;
 
 public class GameData : MonoBehaviour {
-    
-    [SerializeField]
-    string lumberjackName;
 
-    [SerializeField]
-    Sprite lumberjackDefaultSprite;
-    [SerializeField]
-    Sprite lumberjackAltSprite;
+    [HideInInspector]
+    public SpriteIndex spriteIndex;
 
     Dictionary<string, BuildingData> buildings = new Dictionary<string, BuildingData>();
     Dictionary<string, QuestData> quests = new Dictionary<string, QuestData>();
     Dictionary<string, EventData> events = new Dictionary<string, EventData>();
     Dictionary<string, CharacterData> characters = new Dictionary<string, CharacterData>();
+    Dictionary<string, MinigameData> minigames = new Dictionary<string, MinigameData>();
+    Dictionary<string, ResourceData> resources = new Dictionary<string, ResourceData>();
 
     public static GameData instance { get; private set; }
 
@@ -33,6 +30,8 @@ public class GameData : MonoBehaviour {
             Destroy(this.gameObject);
             return;
         }
+
+        spriteIndex = GetComponent<SpriteIndex>();
 
         Dictionary<string, object> temp;
 
@@ -60,24 +59,37 @@ public class GameData : MonoBehaviour {
         temp = MiniJSON.Json.Deserialize(eventJSON) as JSONObject;
         foreach (var evt in temp) {
             JSONObject obj = temp[evt.Key] as JSONObject;
-            events.Add(evt.Key, new EventData(obj["questsUnlocked"] as List<object>, obj["charactersUnlocked"] as List<object>, obj["script"] as List<object>));
+            events.Add(evt.Key, new EventData((obj.ContainsKey("questsUnlocked") ? obj["questsUnlocked"] as List<object> : null),
+                                              (obj.ContainsKey("charactersUnlocked") ? obj["charactersUnlocked"] as List<object> : null),
+                                               obj["script"] as List<object>));
         }
 
-        characters.Add("lumberjack", new CharacterData("Lenhador", lumberjackDefaultSprite));
+        TextAsset minigameFile = Resources.Load("Minigames") as TextAsset;
+        string minigameJSON = System.Text.Encoding.UTF8.GetString(minigameFile.bytes);
+        temp = MiniJSON.Json.Deserialize(minigameJSON) as JSONObject;
+        foreach (var minigame in temp) {
+            JSONObject obj = temp[minigame.Key] as JSONObject;
+            minigames.Add(minigame.Key, new MinigameData((int)(long)obj["highYield"], (int)(long)obj["midYield"], (int)(long)obj["lowYield"], obj["bonuses"] as JSONObject));
+        }
 
-        characters.Add("dracula", new CharacterData("Dracula", lumberjackDefaultSprite));
-        characters.Add("richter", new CharacterData("Richter", lumberjackAltSprite));
-        /*
-        foreach (var v in buildings) {
-            Debug.Log(v.Value);
-        }
-        foreach (var v in quests) {
-            Debug.Log(v.Value);
-        }
-        foreach (var v in events) {
-            Debug.Log(v.Value);
-        }
-        */
+        characters.Add("lumberjack", new CharacterData("Lenhador"  , spriteIndex.lumberjackDefaultSprite));
+        characters.Add("farmer",     new CharacterData("Fazendeiro", spriteIndex.farmerDefaultSprite));
+        characters.Add("mayor",      new CharacterData("Prefeito",   spriteIndex.farmerDefaultSprite));
+
+        characters.Add("dracula", new CharacterData("Dracula", spriteIndex.lumberjackDefaultSprite));
+        characters.Add("richter", new CharacterData("Richter", spriteIndex.lumberjackAltSprite));
+
+        resources.Add("Wood"  , new ResourceData("Madeira", spriteIndex.woodIcon));
+        resources.Add("Stone" , new ResourceData("Pedra"  , spriteIndex.stoneIcon));
+        resources.Add("Metal" , new ResourceData("Metal"  , spriteIndex.metalIcon));
+        resources.Add("Wool"  , new ResourceData("Lã"     , spriteIndex.woolIcon));
+        resources.Add("Food"  , new ResourceData("Comida" , spriteIndex.foodIcon));
+        resources.Add("Gold"  , new ResourceData("Ouro"   , spriteIndex.goldIcon));
+        resources.Add("Paper" , new ResourceData("Papel"  , spriteIndex.paperIcon));
+        resources.Add("Fabric", new ResourceData("Tecido" , spriteIndex.fabricIcon));
+        resources.Add("Brick" , new ResourceData("Tijolo" , spriteIndex.brickIcon));
+        resources.Add("Marble", new ResourceData("Mármore", spriteIndex.marbleIcon));
+        resources.Add("Coal"  , new ResourceData("Carvão" , spriteIndex.coalIcon));
 	}
     #endregion
 
@@ -171,7 +183,7 @@ public class GameData : MonoBehaviour {
             this.script = new List<string>();
 
             if (questsUnlocked != null) foreach (var v in questsUnlocked) {
-                this.questsUnlocked.Add((int) v);
+                this.questsUnlocked.Add((int)(long) v);
             }
 
             if (charactersUnlocked != null) foreach (var v in charactersUnlocked) {
@@ -227,6 +239,61 @@ public class GameData : MonoBehaviour {
     public CharacterData GetCharacterData(string key) {
         if (characters.ContainsKey(key)) {
             return characters[key];
+        }
+        else return null;
+    }
+    #endregion
+
+    #region Minigames
+    public class MinigameData {
+        public MinigameData(int highYield, int midYield, int lowYield, JSONObject bonuses) {
+            this.highYield = highYield;
+            this.midYield = midYield;
+            this.lowYield = lowYield;
+            this.bonuses = new Dictionary<string, Bonus>();
+            foreach (var pair in bonuses) {
+                JSONObject data = pair.Value as JSONObject;
+                this.bonuses.Add(pair.Key, new Bonus((float)(double)data["odds"], int.Parse(data["yield"].ToString())));
+            }
+        }
+        public int highYield;
+        public int midYield;
+        public int lowYield;
+        public Dictionary<string, Bonus> bonuses;
+
+        public class Bonus {
+            public Bonus(float odds, int yield) {
+                this.odds = odds;
+                this.yield = yield;
+            }
+            public float odds;
+            public int yield;
+        }
+    }
+
+    public MinigameData GetMinigameData(string resource) {
+        if (minigames.ContainsKey(resource)) {
+            return minigames[resource];
+        }
+        else {
+            return null;
+        }
+    }
+    #endregion
+
+    #region Resources
+    public class ResourceData {
+        public ResourceData(string name, Sprite icon) {
+            this.name = name;
+            this.icon = icon;
+        }
+        public string name;
+        public Sprite icon;
+    }
+
+    public ResourceData GetResourceData(string key) {
+        if (resources.ContainsKey(key)) {
+            return resources[key];
         }
         else return null;
     }

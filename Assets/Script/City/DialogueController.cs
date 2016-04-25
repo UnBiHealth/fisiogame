@@ -7,7 +7,7 @@ using System.Linq;
 public class DialogueController : MonoBehaviour {
 
     [HideInInspector]
-    public bool isRunning { get; private set; }
+    private bool isRunning;
 
     [SerializeField]
     Image leftSpeaker;
@@ -16,9 +16,19 @@ public class DialogueController : MonoBehaviour {
     [SerializeField]
     Text speakerName;
     [SerializeField]
+    Transform leftNameTransform;
+    [SerializeField]
+    Transform rightNameTransform;
+    [SerializeField]
     Text dialogue;
     [SerializeField]
+    GameObject speakerNameBox;
+    [SerializeField]
+    GameObject textBox;
+    [SerializeField]
     Animator arrowAnimator;
+    [SerializeField]
+    float spriteScale;
 
     char[] intervalChars = { '?', '!', '.' };
     char[] halfIntervalChars = { ',', ':', ';' };
@@ -35,6 +45,7 @@ public class DialogueController : MonoBehaviour {
     bool alwaysAutoSkip;
     bool autoSkip;
     int autoSkipDelay;
+    bool noSprite;
 
     Animator animator;
     AudioSource audioSource;
@@ -48,7 +59,12 @@ public class DialogueController : MonoBehaviour {
     string currentText;
     int typewriterPosition;
 
+    Vector3 leftSpeakerBoxPosition;
+    Vector3 rightSpeakerBoxPosition;
+
     List<string> activeTags = new List<string>();
+
+    public static DialogueController instance { get; private set; }
 
     public void Play(string eventName) {
         currentEvent = GameData.instance.GetEventData(eventName);
@@ -62,7 +78,9 @@ public class DialogueController : MonoBehaviour {
             muted = false;
             useColoredHighlight = true;
             autoSkip = false;
+			isTypewriting = false;
             autoSkipDelay = 0;
+			typewriterPosition = 0;
             Show();
         }
         else {
@@ -73,13 +91,16 @@ public class DialogueController : MonoBehaviour {
     void Awake() {
         isRunning = false;
         isReady = false;
-        isTypewriting = false;
         animator = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
-        typewriterPosition = 0;
+        
+        leftSpeakerBoxPosition = leftNameTransform.position;
+        rightSpeakerBoxPosition = rightNameTransform.position;
+
+        instance = this;
     }
 	
-	void Update () {
+	void FixedUpdate () {
         if (isRunning && isReady) {
             // Doesn't currently have text to print or printed
             if (!isTypewriting) {
@@ -90,8 +111,7 @@ public class DialogueController : MonoBehaviour {
             else if (Input.GetMouseButtonDown(0)) {
                 // If the text has been fully printed, go to next line
                 if (typewriterPosition >= currentText.Length) {
-                    isTypewriting = false; // will trigger parsing next line
-                    dialogue.text = "";
+                    AdvanceLine();
                 }
                 // If not, update the text skipping to the end of it
                 else {
@@ -108,12 +128,7 @@ public class DialogueController : MonoBehaviour {
                     frameCounter--;
                     // Auto skip delay is over, parse next line
                     if (frameCounter <= 0) {
-                        isTypewriting = false; // will trigger parsing next line
-                        dialogue.text = "";
-                        // Reset the autoskip value only if it's temporary
-                        if (!alwaysAutoSkip) {
-                            autoSkip = false;
-                        }
+                        AdvanceLine();
                     }
                 }
             }
@@ -170,6 +185,10 @@ public class DialogueController : MonoBehaviour {
 
     void CheckForRichText() {
 
+        // Return immediately if we're at the end of the string
+        if (typewriterPosition >= currentText.Length)
+            return;
+
         char currentChar = currentText[typewriterPosition - 1];
 
         while (currentChar == '<') {
@@ -209,6 +228,21 @@ public class DialogueController : MonoBehaviour {
 
             // Repeat the loop to check for a sequence of tags.
             currentChar = currentText[typewriterPosition - 1];
+        }
+    }
+
+    void AdvanceLine() {
+        isTypewriting = false; // will trigger parsing next line
+        dialogue.text = "";
+
+        // Restore hidden sprites
+        if (noSprite) {
+            leftSpeaker.gameObject.SetActive(true);
+            rightSpeaker.gameObject.SetActive(true);
+        }
+        // Reset the autoskip value only if it's temporary
+        if (!alwaysAutoSkip) {
+            autoSkip = false;
         }
     }
 
@@ -289,9 +323,11 @@ public class DialogueController : MonoBehaviour {
                 }
                 leftSpeaker.sprite = leftCharacter.defaultSprite;
                 speakerName.text = leftCharacter.name;
+                speakerName.alignment = TextAnchor.MiddleLeft;
                 leftSpeaker.SetNativeSize();
-                leftSpeaker.GetComponent<RectTransform>().sizeDelta *= 2.0f;
+                leftSpeaker.GetComponent<RectTransform>().sizeDelta *= spriteScale;
                 leftSpeaker.color = normalColor;
+                speakerNameBox.transform.position = leftSpeakerBoxPosition;
                 if (useColoredHighlight) {
                     rightSpeaker.color = shadowedColor;
                 }
@@ -304,9 +340,11 @@ public class DialogueController : MonoBehaviour {
                 }
                 rightSpeaker.sprite = rightCharacter.defaultSprite;
                 speakerName.text = rightCharacter.name;
+                speakerName.alignment = TextAnchor.MiddleRight;
                 rightSpeaker.SetNativeSize();
-                rightSpeaker.GetComponent<RectTransform>().sizeDelta *= 2.0f;
+                rightSpeaker.GetComponent<RectTransform>().sizeDelta *= spriteScale;
                 rightSpeaker.color = normalColor;
+                speakerNameBox.transform.position = rightSpeakerBoxPosition;
                 if (useColoredHighlight) {
                     leftSpeaker.color = shadowedColor;
                 }
@@ -429,7 +467,9 @@ public class DialogueController : MonoBehaviour {
                     return;
                 }
                 speakerName.text = leftCharacter.name;
+                speakerName.alignment = TextAnchor.MiddleLeft;
                 leftSpeaker.color = normalColor;
+                speakerNameBox.transform.position = leftSpeakerBoxPosition;
                 if (useColoredHighlight) {
                     rightSpeaker.color = shadowedColor;
                 }
@@ -440,10 +480,12 @@ public class DialogueController : MonoBehaviour {
                     return;
                 }
                 speakerName.text = rightCharacter.name;
+                speakerName.alignment = TextAnchor.MiddleRight;
+                speakerNameBox.transform.position = rightSpeakerBoxPosition;
+                rightSpeaker.color = normalColor;
                 if (useColoredHighlight) {
                     leftSpeaker.color = shadowedColor;
                 }
-                rightSpeaker.color = normalColor;
                 break;
             case "hideleft":
                 leftCharacter = null;
@@ -451,9 +493,17 @@ public class DialogueController : MonoBehaviour {
                 leftSpeaker.GetComponent<RectTransform>().sizeDelta = new Vector2(0, 0);
                 break;
             case "hideright":
-                rightCharacter = null; 
+                rightCharacter = null;
                 rightSpeaker.sprite = null;
                 rightSpeaker.GetComponent<RectTransform>().sizeDelta = new Vector2(0, 0);
+                break;
+            case "noleftsprite":
+                noSprite = true;
+                leftSpeaker.gameObject.SetActive(false);
+                break;
+            case "norightsprite":
+                noSprite = true;
+                rightSpeaker.gameObject.SetActive(false);
                 break;
             case "autoskipnext":
                 autoSkip = true;
@@ -467,12 +517,24 @@ public class DialogueController : MonoBehaviour {
     void Show() {
         isReady = false;
         animator.SetBool("running", true);
+        GetComponent<CanvasGroup>().blocksRaycasts = true;
     }
 
     void Hide() {
         isRunning = false;
         isReady = false;
         animator.SetBool("running", false);
+        GetComponent<CanvasGroup>().blocksRaycasts = false;
+        
+        leftCharacter = null;
+        leftSpeaker.sprite = null;
+        leftSpeaker.GetComponent<RectTransform>().sizeDelta = new Vector2(0, 0);
+        rightCharacter = null; 
+        rightSpeaker.sprite = null;
+        rightSpeaker.GetComponent<RectTransform>().sizeDelta = new Vector2(0, 0);
+
+        speakerName.text = "";
+        dialogue.text = "";
     }
 
     void ShowArrow() {
@@ -485,5 +547,12 @@ public class DialogueController : MonoBehaviour {
 
     public void AnimatorReady() {
         isReady = true;
+    }
+
+    public static bool IsRunning() {
+        if (instance == null) {
+            return false;
+        }
+        else return instance.isRunning;
     }
 }
