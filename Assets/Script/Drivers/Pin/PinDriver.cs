@@ -54,7 +54,7 @@ public class PinDriver : UOSEventDriver, UOSEventListener
     private object _lock = new object();
     public void Add(UhpPin pin)
     {
-        Debug.Log("Name: " + pin.name + " " + pin == null);
+        //Debug.Log("Name: " + pin.name + " " + pin == null);
         lock (_lock)
         {
             pins[pin.name] = pin;

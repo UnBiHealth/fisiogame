@@ -17,8 +17,11 @@ public class ListView : MonoBehaviour {
     [SerializeField]
     int maxViewHeight;
 
-    private GameObject viewport;
-    private GameObject content;
+    [SerializeField]
+    GameObject viewport;
+    [SerializeField]
+    GameObject content;
+
     private float viewHeight;
 
     public abstract class Delegate : MonoBehaviour {
@@ -28,11 +31,6 @@ public class ListView : MonoBehaviour {
 
     public delegate bool DelegateTest(object[] data);
     public delegate bool DelegateCompare(object[] dataA, object[] dataB);
-
-    public void Awake() {
-        viewport = transform.FindChild("Viewport").gameObject;
-        content  = viewport.transform.FindChild("Content").gameObject;
-    }
 
     private List<object[]> listModel = new List<object[]>();
     private List<GameObject> childList = new List<GameObject>();
@@ -129,6 +127,16 @@ public class ListView : MonoBehaviour {
                 }
             }
         } while (swapped && iterationCount < listModel.Count);
+
+        RemakeView();
+    }
+
+    public void Clear() {
+        foreach (GameObject child in childList) {
+            Destroy(child);
+        }
+        childList.Clear();
+        listModel.Clear();
 
         RemakeView();
     }

@@ -65,6 +65,7 @@ public class RewardCounter : MonoBehaviour {
 
         foreach (string key in rewards.Keys) {
             if (rewards[key] > 0) {
+                GameState.instance.resources[key] += rewards[key];
                 nonZeroResources++;
             }  
         }

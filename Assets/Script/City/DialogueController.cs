@@ -59,12 +59,13 @@ public class DialogueController : MonoBehaviour {
     string currentText;
     int typewriterPosition;
 
-    Vector3 leftSpeakerBoxPosition;
-    Vector3 rightSpeakerBoxPosition;
-
     List<string> activeTags = new List<string>();
 
     public static DialogueController instance { get; private set; }
+
+    public delegate void DialogueOverHandler(GameData.EventData data);
+
+    public event DialogueOverHandler DialogueOverEvent;
 
     public void Play(string eventName) {
         currentEvent = GameData.instance.GetEventData(eventName);
@@ -81,6 +82,7 @@ public class DialogueController : MonoBehaviour {
 			isTypewriting = false;
             autoSkipDelay = 0;
 			typewriterPosition = 0;
+            noSprite = false;
             Show();
         }
         else {
@@ -93,9 +95,7 @@ public class DialogueController : MonoBehaviour {
         isReady = false;
         animator = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
-        
-        leftSpeakerBoxPosition = leftNameTransform.position;
-        rightSpeakerBoxPosition = rightNameTransform.position;
+        typewriterPosition = 0;
 
         instance = this;
     }
@@ -148,6 +148,7 @@ public class DialogueController : MonoBehaviour {
         // Frame counter done - write a new character.
         if (frameCounter <= 0) {
             typewriterPosition += 1;
+            // Advance past any rtf tags
             CheckForRichText();
             // Are we at the end of the text?
             if (typewriterPosition >= currentText.Length) {
@@ -327,7 +328,7 @@ public class DialogueController : MonoBehaviour {
                 leftSpeaker.SetNativeSize();
                 leftSpeaker.GetComponent<RectTransform>().sizeDelta *= spriteScale;
                 leftSpeaker.color = normalColor;
-                speakerNameBox.transform.position = leftSpeakerBoxPosition;
+                speakerNameBox.transform.position = leftNameTransform.position;
                 if (useColoredHighlight) {
                     rightSpeaker.color = shadowedColor;
                 }
@@ -344,7 +345,7 @@ public class DialogueController : MonoBehaviour {
                 rightSpeaker.SetNativeSize();
                 rightSpeaker.GetComponent<RectTransform>().sizeDelta *= spriteScale;
                 rightSpeaker.color = normalColor;
-                speakerNameBox.transform.position = rightSpeakerBoxPosition;
+                speakerNameBox.transform.position = rightNameTransform.position;
                 if (useColoredHighlight) {
                     leftSpeaker.color = shadowedColor;
                 }
@@ -469,7 +470,7 @@ public class DialogueController : MonoBehaviour {
                 speakerName.text = leftCharacter.name;
                 speakerName.alignment = TextAnchor.MiddleLeft;
                 leftSpeaker.color = normalColor;
-                speakerNameBox.transform.position = leftSpeakerBoxPosition;
+                speakerNameBox.transform.position = leftNameTransform.position;
                 if (useColoredHighlight) {
                     rightSpeaker.color = shadowedColor;
                 }
@@ -481,7 +482,7 @@ public class DialogueController : MonoBehaviour {
                 }
                 speakerName.text = rightCharacter.name;
                 speakerName.alignment = TextAnchor.MiddleRight;
-                speakerNameBox.transform.position = rightSpeakerBoxPosition;
+                speakerNameBox.transform.position = rightNameTransform.position;
                 rightSpeaker.color = normalColor;
                 if (useColoredHighlight) {
                     leftSpeaker.color = shadowedColor;
@@ -547,6 +548,12 @@ public class DialogueController : MonoBehaviour {
 
     public void AnimatorReady() {
         isReady = true;
+    }
+
+    public void AnimatorHidden() {
+        if (DialogueOverEvent != null)
+            DialogueOverEvent(currentEvent);
+        Debug.Log("Dialogue Controller: Event over");
     }
 
     public static bool IsRunning() {

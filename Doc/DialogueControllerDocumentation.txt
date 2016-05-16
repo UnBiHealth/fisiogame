@@ -47,4 +47,6 @@ Actions:
  - hideLeft: Removes the left character from the scene. To make it reappear, a new speaker must be set (highlighting will fail).
  - hideRight: Same as hideLeft for the right character.
  - autoSkipNext: Makes the next line not wait for user input to advance the dialogue, but instead, advance as soon as it's done. This works only for one line; if you need a permanent effect, see alwaysAutoSkip. This action also respects the currently set autoSkipDelay.
+ - noLeftSprite: Makes the left sprite invisible for the duration of one line. Unlike hide, this does not invalidate the speaker.
+ - noRightSprite: Same as noLeftSprite for the right speaker sprite.
     

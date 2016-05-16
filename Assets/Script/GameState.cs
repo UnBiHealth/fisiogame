@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 using JSONObject = System.Collections.Generic.Dictionary<string, object>;
 
@@ -11,14 +12,13 @@ public class GameState : MonoBehaviour {
 
     public bool mute;
 
-    public bool newSave { get; private set; }
-
-    List<int> completedQuests         = new List<int>();
-    List<int> unlockedQuests          = new List<int>();
-    List<string> unlockedCharacters   = new List<string>();
-    List<string> completedBuildings   = new List<string>();
-    List<string> queuedEvents         = new List<string>();
-    Dictionary<string, int> resources = new Dictionary<string, int>();
+    public List<int> completedQuests = new List<int>();
+    public List<int> unlockedQuests = new List<int>();
+    public List<string> unlockedCharacters = new List<string>();
+    public List<string> completedBuildings = new List<string>();
+    public List<string> queuedEvents = new List<string>();
+    public List<string> completedEvents = new List<string>();
+    public Dictionary<string, int> resources = new Dictionary<string, int>();
 
     string saveName;
     string saveFilePath;
@@ -72,6 +72,7 @@ public class GameState : MonoBehaviour {
         saveFile.Add("unlockedCharacters", unlockedCharacters);
         saveFile.Add("completedBuildings", completedBuildings);
         saveFile.Add("queuedEvents",       queuedEvents);
+        saveFile.Add("completedEvents",    completedEvents);
         saveFile.Add("resources",          resources);
 
         saveFiles[saveName] = saveFile;
@@ -86,12 +87,12 @@ public class GameState : MonoBehaviour {
         this.saveName = saveName;
         mute = false;
         AudioListener.volume = 1.0f;
-        newSave = true;
         completedQuests.Clear();
         unlockedQuests.Clear();
         unlockedCharacters.Clear();
         completedBuildings.Clear();
         queuedEvents.Clear();
+        completedEvents.Clear();
         resources.Clear();
         resources.Add("Wood",   0);
         resources.Add("Stone",  0);
@@ -116,15 +117,22 @@ public class GameState : MonoBehaviour {
         JSONObject saveFile = saveFiles[saveName] as JSONObject;
 
         this.saveName = saveName;
-        newSave = false;
 
+        // MiniJSON makes me sad.
         mute               = (bool)saveFile["mute"];
-        completedQuests    = saveFile["completedQuests"]    as List<int>;
-        unlockedQuests     = saveFile["unlockedQuests"]     as List<int>;
-        unlockedCharacters = saveFile["unlockedCharacters"] as List<string>;
-        completedBuildings = saveFile["completedBuildings"] as List<string>;
-        queuedEvents       = saveFile["queuedEvents"]       as List<string>;
-        resources          = saveFile["resources"]          as Dictionary<string, int>;
+        completedQuests    = ExtractInts   (saveFile["completedQuests"] as List<object>);
+        unlockedQuests     = ExtractInts   (saveFile["unlockedQuests"] as List<object>);
+        unlockedCharacters = ExtractStrings(saveFile["unlockedCharacters"] as List<object>);
+        completedBuildings = ExtractStrings(saveFile["completedBuildings"] as List<object>);
+        queuedEvents       = ExtractStrings(saveFile["queuedEvents"] as List<object>);
+        completedEvents    = ExtractStrings(saveFile["completedEvents"] as List<object>);
+
+        resources = new Dictionary<string, int>();
+        var tempResources = saveFile["resources"] as Dictionary <string, object>;
+
+        foreach (var pair in tempResources) {
+            resources.Add(pair.Key, int.Parse(pair.Value.ToString()));
+        }
 
         if (mute) {
             AudioListener.volume = 0;
@@ -132,4 +140,47 @@ public class GameState : MonoBehaviour {
 
         return true;
     }
+
+    public void UnlockQuest(int number) {
+        unlockedQuests.Add(number);
+    }
+
+    public void CompleteQuest(int number) {
+        completedQuests.Add(number);
+        unlockedQuests.Remove(number);
+    }
+
+    public void QueueEvent(string name) {
+        queuedEvents.Add(name);
+    }
+
+    public void CompleteEvent(string name) {
+        queuedEvents.Remove(name);
+        completedEvents.Add(name);
+    }
+
+    public void UnlockCharacter(string name) {
+        unlockedCharacters.Add(name);
+    }
+
+    public void UnlockBuilding(string name) {
+        completedBuildings.Add(name);
+    }
+
+    List<int> ExtractInts(List<object> list) {
+        List<int> newList = new List<int>();
+        foreach (var obj in list) {
+            newList.Add(int.Parse(obj.ToString()));
+        }
+        return newList;
+    }
+
+    List<string> ExtractStrings(List<object> list) {
+        List<string> newList = new List<string>();
+        foreach (var obj in list) {
+            newList.Add(obj.ToString());
+        }
+        return newList;
+    }
 }
+

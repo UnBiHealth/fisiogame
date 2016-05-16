@@ -14,14 +14,4 @@ public class Building : MonoBehaviour {
         yield = data.yield;
         yieldAmount = data.yieldAmount;
     }
-
-    public void OnClick() {
-        if (gameObject.name == "Plaza") {
-            SceneController.instance.GoToPlaza();
-        }
-        else if (yieldAmount > 0) {
-            // TODO: Add resources to save structure 
-            Debug.Log(yield + " " + yieldAmount);
-        }
-    }
 }

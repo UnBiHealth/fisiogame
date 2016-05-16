@@ -10,12 +10,12 @@ public class GameData : MonoBehaviour {
     [HideInInspector]
     public SpriteIndex spriteIndex;
 
-    Dictionary<string, BuildingData> buildings = new Dictionary<string, BuildingData>();
-    Dictionary<string, QuestData> quests = new Dictionary<string, QuestData>();
-    Dictionary<string, EventData> events = new Dictionary<string, EventData>();
-    Dictionary<string, CharacterData> characters = new Dictionary<string, CharacterData>();
-    Dictionary<string, MinigameData> minigames = new Dictionary<string, MinigameData>();
-    Dictionary<string, ResourceData> resources = new Dictionary<string, ResourceData>();
+    public Dictionary<string, BuildingData> buildings = new Dictionary<string, BuildingData>();
+    public Dictionary<string, QuestData> quests = new Dictionary<string, QuestData>();
+    public Dictionary<string, EventData> events = new Dictionary<string, EventData>();
+    public Dictionary<string, CharacterData> characters = new Dictionary<string, CharacterData>();
+    public Dictionary<string, MinigameData> minigames = new Dictionary<string, MinigameData>();
+    public Dictionary<string, ResourceData> resources = new Dictionary<string, ResourceData>();
 
     public static GameData instance { get; private set; }
 
@@ -40,7 +40,9 @@ public class GameData : MonoBehaviour {
         temp = MiniJSON.Json.Deserialize(buildingJSON) as JSONObject;
         foreach (var building in temp) {
             JSONObject obj = temp[building.Key] as JSONObject;
-            buildings.Add(building.Key, new BuildingData(obj["name"] as string, obj["yield"] as string, (long)obj["yieldAmount"]));
+            buildings.Add(building.Key, new BuildingData(obj["name"] as string, obj["yield"] as string, (long)obj["yieldAmount"], 
+                                                         (int)((long)(obj["buildPosition"] as JSONObject)["x"]),
+                                                         (int)((long)(obj["buildPosition"] as JSONObject)["y"])));
         }
 
         TextAsset questFile = Resources.Load("Quests") as TextAsset;
@@ -49,9 +51,8 @@ public class GameData : MonoBehaviour {
         foreach (var quest in temp) {
             JSONObject obj = temp[quest.Key] as JSONObject;
             quests.Add(quest.Key, new QuestData(obj["name"] as string, obj["description"] as string, obj["requirements"] as Dictionary<string, object>,
-                                                obj["builds"] as string, (int)((long)(obj["buildPosition"] as JSONObject)["x"]),
-                                                (int)((long)(obj["buildPosition"] as JSONObject)["y"]), (int)((long)obj["unlockedBy"]), (int)((long)obj["minimumSession"]),
-                                                obj["questOpeningEvent"] as string, obj["questCompletedEvent"] as string));
+                                                obj["builds"] as string, (int)((long)obj["unlockedBy"]), (int)((long)obj["minimumSession"]),
+                                                obj["questOpeningEvent"] as string, obj["questCompletedEvent"] as string, obj["questGiver"] as string));
         }
 
         TextAsset eventFile = Resources.Load("Events") as TextAsset;
@@ -59,7 +60,8 @@ public class GameData : MonoBehaviour {
         temp = MiniJSON.Json.Deserialize(eventJSON) as JSONObject;
         foreach (var evt in temp) {
             JSONObject obj = temp[evt.Key] as JSONObject;
-            events.Add(evt.Key, new EventData((obj.ContainsKey("questsUnlocked") ? obj["questsUnlocked"] as List<object> : null),
+            events.Add(evt.Key, new EventData(evt.Key,
+                                              (obj.ContainsKey("questsUnlocked") ? obj["questsUnlocked"] as List<object> : null),
                                               (obj.ContainsKey("charactersUnlocked") ? obj["charactersUnlocked"] as List<object> : null),
                                                obj["script"] as List<object>));
         }
@@ -72,40 +74,44 @@ public class GameData : MonoBehaviour {
             minigames.Add(minigame.Key, new MinigameData((int)(long)obj["highYield"], (int)(long)obj["midYield"], (int)(long)obj["lowYield"], obj["bonuses"] as JSONObject));
         }
 
-        characters.Add("lumberjack", new CharacterData("Lenhador"  , spriteIndex.lumberjackDefaultSprite));
-        characters.Add("farmer",     new CharacterData("Fazendeiro", spriteIndex.farmerDefaultSprite));
-        characters.Add("mayor",      new CharacterData("Prefeito",   spriteIndex.farmerDefaultSprite));
+        characters.Add("lumberjack", new CharacterData("Araújo, o Lenhador", spriteIndex.lumberjackSprite, spriteIndex.lumberjackMiniSprite));
+        characters.Add("farmer", new CharacterData("Jorge, o Fazendeiro", spriteIndex.farmerSprite, spriteIndex.farmerMiniSprite));
+        characters.Add("mayor", new CharacterData("Efigênio, o Prefeito", spriteIndex.mayorSprite, spriteIndex.mayorMiniSprite));
+        characters.Add("stonemason", new CharacterData("Pietro, o Pedreiro", spriteIndex.stonemasonSprite, spriteIndex.stonemasonMiniSprite));
+        characters.Add("salesman", new CharacterData("Aurélio, o Comerciante", spriteIndex.salesmanSprite, spriteIndex.salesmanMiniSprite));
+        characters.Add("blacksmith", new CharacterData("Ademir, o Ferreiro", spriteIndex.blacksmithSprite, spriteIndex.blacksmithMiniSprite));
+        characters.Add("scholar", new CharacterData("Lúcio, o Estudioso", spriteIndex.scholarSprite, spriteIndex.scholarMiniSprite));
+        characters.Add("artist", new CharacterData("Cândido, o Artista", spriteIndex.artistSprite, spriteIndex.artistMiniSprite));
 
-        characters.Add("dracula", new CharacterData("Dracula", spriteIndex.lumberjackDefaultSprite));
-        characters.Add("richter", new CharacterData("Richter", spriteIndex.lumberjackAltSprite));
-
-        resources.Add("Wood"  , new ResourceData("Madeira", spriteIndex.woodIcon));
-        resources.Add("Stone" , new ResourceData("Pedra"  , spriteIndex.stoneIcon));
-        resources.Add("Metal" , new ResourceData("Metal"  , spriteIndex.metalIcon));
-        resources.Add("Wool"  , new ResourceData("Lã"     , spriteIndex.woolIcon));
-        resources.Add("Food"  , new ResourceData("Comida" , spriteIndex.foodIcon));
-        resources.Add("Gold"  , new ResourceData("Ouro"   , spriteIndex.goldIcon));
-        resources.Add("Paper" , new ResourceData("Papel"  , spriteIndex.paperIcon));
-        resources.Add("Fabric", new ResourceData("Tecido" , spriteIndex.fabricIcon));
-        resources.Add("Brick" , new ResourceData("Tijolo" , spriteIndex.brickIcon));
-        resources.Add("Marble", new ResourceData("Mármore", spriteIndex.marbleIcon));
-        resources.Add("Coal"  , new ResourceData("Carvão" , spriteIndex.coalIcon));
+        resources.Add("Wood"  , new ResourceData("Madeira", spriteIndex.woodIcon, spriteIndex.woodIconHighlight));
+        resources.Add("Stone", new ResourceData("Pedra", spriteIndex.stoneIcon, spriteIndex.stoneIconHighlight));
+        resources.Add("Metal", new ResourceData("Metal", spriteIndex.metalIcon, spriteIndex.metalIconHighlight));
+        resources.Add("Wool", new ResourceData("Lã", spriteIndex.woolIcon, spriteIndex.woolIconHighlight));
+        resources.Add("Food", new ResourceData("Comida", spriteIndex.foodIcon, spriteIndex.foodIconHighlight));
+        resources.Add("Gold", new ResourceData("Ouro", spriteIndex.goldIcon, spriteIndex.goldIconHighlight));
+        resources.Add("Paper", new ResourceData("Papel", spriteIndex.paperIcon, spriteIndex.paperIconHighlight));
+        resources.Add("Fabric", new ResourceData("Tecido", spriteIndex.fabricIcon, spriteIndex.fabricIconHighlight));
+        resources.Add("Brick", new ResourceData("Tijolo", spriteIndex.brickIcon, spriteIndex.brickIconHighlight));
+        resources.Add("Marble", new ResourceData("Mármore", spriteIndex.marbleIcon, spriteIndex.marbleIconHighlight));
+        resources.Add("Coal", new ResourceData("Carvão", spriteIndex.coalIcon, spriteIndex.coalIconHighlight));
 	}
     #endregion
 
     #region Buildings
     public class BuildingData {
-        public BuildingData(string name, string yield, long yieldAmount) {
+        public BuildingData(string name, string yield, long yieldAmount, int buildX, int buildY) {
             this.name = name;
             this.yield = yield;
-            this.yieldAmount = (int)yieldAmount; 
+            this.yieldAmount = (int)yieldAmount;
+            this.buildPosition = new Vector2(buildX, buildY);
         }
         public string name { get; private set; }
         public string yield { get; private set; }
         public int yieldAmount { get; private set; }
+        public Vector2 buildPosition { get; private set; }
 
         public override string ToString() {
-            return name + " - " + yield + " - " + yieldAmount;
+            return name + " - " + yield + " - " + yieldAmount + " - " + buildPosition;
         }
     }
 
@@ -121,17 +127,17 @@ public class GameData : MonoBehaviour {
     #region Quests
     public class QuestData {
         public QuestData(string name, string description, Dictionary<string, object> requirements,
-                         string builds, int buildX, int buildY, int unlockedBy, int minimumSession,
-                         string questOpeningEvent, string questCompletedEvent) {
+                         string builds, int unlockedBy, int minimumSession, string questOpeningEvent,
+                         string questCompletedEvent, string questGiver) {
             this.name = name;
             this.description = description;
             this.requirements = new Dictionary<string, int>();
             this.builds = builds;
-            this.buildPosition = new Vector2(buildX, buildY);
             this.unlockedBy = unlockedBy;
             this.minimumSession = minimumSession;
             this.questOpeningEvent = questOpeningEvent;
             this.questCompletedEvent = questCompletedEvent;
+            this.questGiver = questGiver;
 
             foreach (var v in requirements) {
                 this.requirements.Add(v.Key, (int)(long)v.Value);
@@ -141,33 +147,27 @@ public class GameData : MonoBehaviour {
         public string description { get; private set; }
         public Dictionary<string, int> requirements { get; private set; }
         public string builds { get; private set; }
-        public Vector2 buildPosition { get; private set; }
         public int unlockedBy { get; private set; }
         public int minimumSession { get; private set; }
         public string questOpeningEvent { get; private set; }
         public string questCompletedEvent { get; private set; }
+        public string questGiver { get; private set; }
 
         public override string ToString() {
             string s = name + " - " + description + "\n";
             foreach (var v in requirements) {
-                s += v.Key + " - " + v.Value + "\n";
+                s += "Quest " + v.Key + " - " + v.Value + "\n";
             }
-            s += "Builds " + builds + " @" + buildPosition + "\n";
+            s += "Builds " + builds + '\n';
             s += "Unlocked by Quest " + unlockedBy + " @session " + minimumSession + "\n";
             s += "Plays" + (questOpeningEvent != null ? questOpeningEvent : "<none>") + " and " + (questCompletedEvent != null ? questCompletedEvent : "<none>");
             return s;
         }
     }
 
-    public QuestData GetQuestData(string key) {
-        if (quests.ContainsKey(key)) {
-            return quests[key];
-        }
-        else return null;
-    }
 
     public QuestData GetQuestData(int questNumber) {
-        string key = "quest" + questNumber;
+        string key = questNumber.ToString();
         if (quests.ContainsKey(key)) {
             return quests[key];
         }
@@ -177,7 +177,8 @@ public class GameData : MonoBehaviour {
 
     #region Events
     public class EventData {
-        public EventData(List<object> questsUnlocked, List<object> charactersUnlocked, List<object> script) {
+        public EventData(string name, List<object> questsUnlocked, List<object> charactersUnlocked, List<object> script) {
+            this.name = name;
             this.questsUnlocked = new List<int>();
             this.charactersUnlocked = new List<string>();
             this.script = new List<string>();
@@ -194,6 +195,7 @@ public class GameData : MonoBehaviour {
                 this.script.Add(v as string);
             }
         }
+        public string name { get; private set; }
         public List<int> questsUnlocked { get; private set; }
         public List<string> charactersUnlocked { get; private set; }
         public List<string> script { get; private set; }
@@ -228,12 +230,14 @@ public class GameData : MonoBehaviour {
 
     #region Characters
     public class CharacterData {
-        public CharacterData(string name, Sprite defaultSprite) {
+        public CharacterData(string name, Sprite defaultSprite, Sprite miniSprite) {
             this.name = name;
             this.defaultSprite = defaultSprite;
+            this.miniSprite = miniSprite;
         }
         public string name;
         public Sprite defaultSprite;
+        public Sprite miniSprite;
     }
 
     public CharacterData GetCharacterData(string key) {
@@ -283,12 +287,14 @@ public class GameData : MonoBehaviour {
 
     #region Resources
     public class ResourceData {
-        public ResourceData(string name, Sprite icon) {
+        public ResourceData(string name, Sprite icon, Sprite highlightedIcon) {
             this.name = name;
             this.icon = icon;
+            this.highlightedIcon = highlightedIcon;
         }
         public string name;
         public Sprite icon;
+        public Sprite highlightedIcon;
     }
 
     public ResourceData GetResourceData(string key) {

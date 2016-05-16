@@ -1,331 +1,277 @@
 {
-	"quest1": {
+	"1": {
 		"name": "Um Novo Começo",
 		"description": "Construa uma casa para poder se instalar na vila.",
 		"requirements": {
 			"Wood": 100
 		},
 		"builds": "House",
-		"buildPosition": {
-			"x": 0,
-			"y": 0
-		},
 		"unlockedBy": 0,
 		"minimumSession": 1,
 		"questOpeningEvent": "VillageArrival",
-		"questCompletedEvent": "HouseCompleted"
+		"questCompletedEvent": "HouseCompleted",
+		"questGiver": "mayor"
 	},
 
-	"quest2": {
+	"2": {
 		"name": "Introdução à Alvenaria",
-		"description": "Precisamos acomodar um minerador! Construa uma casa de ferramentas.",
+		"description": "Posso te ajudar a conseguir pedra, mas preciso de uma casa de ferramentas.",
 		"requirements": {
 			"Wood": 150
 		},
 		"builds": "ToolHouse",
-		"buildPosition": {
-			"x": 0,
-			"y": 0
-		},
 		"unlockedBy": 1,
 		"minimumSession": 1,
 		"questOpeningEvent": "",
-		"questCompletedEvent": ""
+		"questCompletedEvent": "",
+		"questGiver": "stonemason"
 	},
 
-	"quest3": {
+	"3": {
 		"name": "Contando Carneirinhos",
-		"description": "Construa um cercado de ovelhas para termos lã.",
+		"description": "Adoraria ter um casaco de lã no inverno...",
 		"requirements": {
 			"Wood": 150
 		},
 		"builds": "SheepPen",
-		"buildPosition": {
-			"x": 0,
-			"y": 0
-		},
 		"unlockedBy": 1,
 		"minimumSession": 1,
 		"questOpeningEvent": "",
-		"questCompletedEvent": ""
+		"questCompletedEvent": "",
+		"questGiver": "farmer"
 	},
 
-	"quest4": {
+	"4": {
 		"name": "Dom Quixote Não Aprova",
-		"description": "Para podermos processar nossos grãos, construa um moinho de vento.",
+		"description": "A vila está crescendo, e precisamos de mais comida.",
 		"requirements": {
 			"Wood": 150,
 			"Fabric": 50
 		},
 		"builds": "Windmill",
-		"buildPosition": {
-			"x": 0,
-			"y": 0
-		},
 		"unlockedBy": 1,
 		"minimumSession": 1,
 		"questOpeningEvent": "",
-		"questCompletedEvent": ""
+		"questCompletedEvent": "",
+		"questGiver": "farmer"
 	},
 
-	"quest5": {
+	"5": {
 		"name": "Casa de Ferreiro, Espeto de Metal",
-		"description": "Um ferreiro chegou à cidade! Prepare uma casa de forja.",
+		"description": "Com uma forja, posso preparar metal.",
 		"requirements": {
 			"Wood": 200,
 			"Stone": 200
 		},
 		"builds": "Smithy",
-		"buildPosition": {
-			"x": 0,
-			"y": 0
-		},
 		"unlockedBy": 2,
 		"minimumSession": 2,
 		"questOpeningEvent": "",
-		"questCompletedEvent": ""
+		"questCompletedEvent": "",
+		"questGiver": "blacksmith"
 	},
 
-	"quest6": {
+	"6": {
 		"name": "Representantes do Povo",
-		"description": "Construa um centro administrativo para abrigar nossa prefeitura.",
+		"description": "Graças a você, a vila prospera.",
 		"requirements": {
 			"Wood": 100,
 			"Stone": 100,
 			"Marble": 50
 		},
 		"builds": "MayorHall",
-		"buildPosition": {
-			"x": 0,
-			"y": 0
-		},
 		"unlockedBy": 2,
 		"minimumSession": 2,
 		"questOpeningEvent": "",
-		"questCompletedEvent": ""
+		"questCompletedEvent": "",
+		"questGiver": "mayor"
 	},
 
-	"quest7": {
+	"7": {
 		"name": "Coma Suas Verduras!",
-		"description": "Prepare uma horta para cultivarmos vegetais.",
+		"description": "Se alimente bem para viver bem!",
 		"requirements": {
 			"Wood": 100
 		},
 		"builds": "VegetablePlot",
-		"buildPosition": {
-			"x": 0,
-			"y": 0
-		},
 		"unlockedBy": 2,
 		"minimumSession": 2,
 		"questOpeningEvent": "",
-		"questCompletedEvent": ""
+		"questCompletedEvent": "",
+		"questGiver": "farmer"
 	},
 
-	"quest8": {
+	"8": {
 		"name": "Capitalismo, Parte 1",
-		"description": "A economia da vila melhoraria se tivessemos uma feira. Vamos providenciar?",
+		"description": "Vejo grande potencial nesse lugar.",
 		"requirements": {
 			"Wood": 300,
 			"Food": 100
 		},
 		"builds": "Fair",
-		"buildPosition": {
-			"x": 0,
-			"y": 0
-		},
 		"unlockedBy": 5,
 		"minimumSession": 4,
 		"questOpeningEvent": "",
-		"questCompletedEvent": ""
+		"questCompletedEvent": "",
+		"questGiver": "salesman"
 	},
 
-	"quest9": {
+	"9": {
 		"name": "Sonho do Pônei Próprio",
-		"description": "Construa um estábulo. Ter cavalos tornará tarefas da vila mais eficientes.",
+		"description": "Ter cavalos tornará tarefas da vila mais eficientes.",
 		"requirements": {
 			"Wood": 100,
 			"Metal": 100, 
 			"Food": 100
 		},
 		"builds": "Stable",
-		"buildPosition": {
-			"x": 0,
-			"y": 0
-		},
 		"unlockedBy": 5,
 		"minimumSession": 4,
 		"questOpeningEvent": "",
-		"questCompletedEvent": ""
+		"questCompletedEvent": "",
+		"questGiver": "farmer"
 	},
 
-	"quest10": {
+	"10": {
 		"name": "Praticando Origami",
-		"description": "Vamos fazer uma fábrica de papel para podermos fazer livros.",
+		"description": "Adoro o cheiro de livros.",
 		"requirements": {
 			"Wood": 100,
 			"Metal": 100
 		},
 		"builds": "PaperMaker",
-		"buildPosition": {
-			"x": 0,
-			"y": 0
-		},
 		"unlockedBy": 5,
 		"minimumSession": 4,
 		"questOpeningEvent": "",
-		"questCompletedEvent": ""
+		"questCompletedEvent": "",
+		"questGiver": "mayor"
 	},
 
-	"quest11": {
+	"11": {
 		"name": "A Última Moda",
-		"description": "Providencie uma fábrica de tecidos.",
+		"description": "Alguém importante como você tem que atentar às tendências da moda!",
 		"requirements": {
 			"Wood": 200,
 			"Metal": 200,
 			"Wool": 100
 		},
 		"builds": "FabricMaker",
-		"buildPosition": {
-			"x": 0,
-			"y": 0
-		},
 		"unlockedBy": 8,
 		"minimumSession": 5,
 		"questOpeningEvent": "",
-		"questCompletedEvent": ""
+		"questCompletedEvent": "",
+		"questGiver": "salesman"
 	},
 
-	"quest12": {
+	"12": {
 		"name": "Olá, ria!",
-		"description": "Tijolos vão melhorar a construção na cidade. Construa uma olaria.",
+		"description": "Pessoalmente, eu gosto mais de pedras, mas tijolos são bons também.",
 		"requirements": {
 			"Wood": 250,
 			"Metal": 250,
 			"Coal": 50
 		},
 		"builds": "BrickMaker",
-		"buildPosition": {
-			"x": 0,
-			"y": 0
-		},
 		"unlockedBy": 8,
 		"minimumSession": 5,
 		"questOpeningEvent": "",
-		"questCompletedEvent": ""
+		"questCompletedEvent": "",
+		"questGiver": "stonemason"
 	},
 
-	"quest13": {
+	"13": {
 		"name": "Capitalismo, parte 2",
-		"description": "Construa um banco para fortalecer nossa economia.",
+		"description": "Construir aquela feira realmente foi uma boa idéia.",
 		"requirements": {
 			"Stone": 150,
 			"Metal": 150,
 			"Paper": 50
 		},
 		"builds": "Bank",
-		"buildPosition": {
-			"x": 0,
-			"y": 0
-		},
 		"unlockedBy": 8,
 		"minimumSession": 5,
 		"questOpeningEvent": "",
-		"questCompletedEvent": ""
+		"questCompletedEvent": "",
+		"questGiver": "mayor"
 	},
 
-	"quest14": {
+	"14": {
 		"name": "O Mundo das Artes",
-		"description": "Um artista chegou à cidade! Construa um Estúdio.",
+		"description": "É na arte que o homem se ultrapassa definitivamente.",
 		"requirements": {
 			"Wood": 300,
 			"Fabric": 100,
 			"Gold": 50
 		},
 		"builds": "Studio",
-		"buildPosition": {
-			"x": 0,
-			"y": 0
-		},
 		"unlockedBy": 11,
 		"minimumSession": 7,
 		"questOpeningEvent": "",
-		"questCompletedEvent": ""
+		"questCompletedEvent": "",
+		"questGiver": "artist"
 	},
 
-	"quest15": {
+	"15": {
 		"name": "Fim da Lei Seca",
-		"description": "Uma taverna vai \"motivar\" os trabalhadores. Construa uma.",
+		"description": "Acredite, a taverna vai deixar os trabalhadores mais motivados.",
 		"requirements": {
 			"Wood": 200,
 			"Stone": 150,
 			"Food": 150
 		},
 		"builds": "Tavern",
-		"buildPosition": {
-			"x": 0,
-			"y": 0
-		},
 		"unlockedBy": 11,
 		"minimumSession": 7,
 		"questOpeningEvent": "",
-		"questCompletedEvent": ""
+		"questCompletedEvent": "",
+		"questGiver": "salesman"
 	},
 
-	"quest16": {
+	"16": {
 		"name": "Uma Rica História",
-		"description": "Para preservar a história de nosso povo, foi requisitado um museu.",
+		"description": "Aqueles que esquecem o passado estão condenados a repetí-lo.",
 		"requirements": {
 			"Metal": 100,
 			"Brick": 100,
 			"Gold": 150
 		},
 		"builds": "Museum",
-		"buildPosition": {
-			"x": 0,
-			"y": 0
-		},
 		"unlockedBy": 11,
 		"minimumSession": 7,
 		"questOpeningEvent": "",
-		"questCompletedEvent": ""
+		"questCompletedEvent": "",
+		"questGiver": "mayor"
 	},
 
-	"quest17": {
+	"17": {
 		"name": "Honra aos Ancestrais",
-		"description": "O Artista requer materiais para fazer uma homenagem ao fundador da vila.",
+		"description": "Triste é o discípulo que não ultrapassa o mestre.",
 		"requirements": {
 			"Stone": 200,
 			"Marble": 200,
 			"Copper": 100
 		},
 		"builds": "Statue",
-		"buildPosition": {
-			"x": 0,
-			"y": 0
-		},
 		"unlockedBy": 14,
 		"minimumSession": 9,
 		"questOpeningEvent": "",
-		"questCompletedEvent": ""
+		"questCompletedEvent": "",
+		"questGiver": "artist"
 	},
 
-	"quest18": {
+	"18": {
 		"name": "Do A ao Z",
-		"description": "Os habitantes querem ler! Construa uma biblioteca.",
+		"description": "Aquele que destrói um bom livro, mata a própria razão.",
 		"requirements": {
 			"Wood": 300,
 			"Marble": 150,
 			"Paper": 300
 		},
 		"builds": "Library",
-		"buildPosition": {
-			"x": 0,
-			"y": 0
-		},
 		"unlockedBy": 17,
 		"minimumSession": 11,
 		"questOpeningEvent": "",
-		"questCompletedEvent": ""
+		"questCompletedEvent": "",
+		"questGiver": "scholar"
 	}
 }

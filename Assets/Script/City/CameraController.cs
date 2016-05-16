@@ -5,30 +5,32 @@ using System.Collections;
 public class CameraController : MonoBehaviour {
 
     public float defaultSize;
-    public float zoomIncrement;
-    public float maxZoomIns;
+    public int maxZoomIns;
+
+    int currentZoomIns;
     // Use this for initialization
     void Start () {
         defaultSize = Camera.main.orthographicSize;
-    }
-    
-    // Update is called once per frame
-    void Update () {
-    
+        ResetZoom();
     }
 
     public void ZoomIn() {
-        if ((int)Camera.main.orthographicSize > defaultSize - (maxZoomIns * zoomIncrement))
-            Camera.main.orthographicSize -= zoomIncrement; 
+        if (currentZoomIns < maxZoomIns) {
+            currentZoomIns++;
+            Camera.main.orthographicSize = defaultSize / currentZoomIns; 
+        }
     }
 
     public void ZoomOut() {
-        if ((int)Camera.main.orthographicSize < defaultSize)
-            Camera.main.orthographicSize += zoomIncrement; 
+        if (currentZoomIns > 1) {
+            currentZoomIns--;
+            Camera.main.orthographicSize = defaultSize / currentZoomIns; 
+        }
     }
 
     public void ResetZoom() {
-        Camera.main.orthographicSize = defaultSize;
+        currentZoomIns = 2;
+        Camera.main.orthographicSize = defaultSize / currentZoomIns;
         Camera.main.transform.position = new Vector3(0, 0, -10);
     }
 

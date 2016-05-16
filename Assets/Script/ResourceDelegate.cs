@@ -13,7 +13,7 @@ public class ResourceDelegate : ListView.Delegate {
     
     public override void Set(params object[] args) {
         GameData.ResourceData resource = GameData.instance.GetResourceData(args[0] as string);
-        icon.sprite = resource.icon;
+        icon.sprite = resource.highlightedIcon;
         resourceName.text = resource.name;
         resourceAmount.text = "" + args[1];
     }
