@@ -10,6 +10,8 @@ public class GameState : MonoBehaviour {
 
     JSONObject saveFiles = new JSONObject();
 
+    public bool sessionInitialized;
+
     public bool mute;
 
     public List<int> completedQuests = new List<int>();
@@ -22,6 +24,7 @@ public class GameState : MonoBehaviour {
 
     string saveName;
     string saveFilePath;
+   
     public static GameState instance { get; private set; }
 
     void Awake() {
@@ -81,6 +84,8 @@ public class GameState : MonoBehaviour {
     }
 
     public bool LoadDefault(string saveName) {
+        sessionInitialized = false; 
+
         if (saveFiles.ContainsKey(saveName))
             return false;
 
@@ -110,6 +115,9 @@ public class GameState : MonoBehaviour {
     }
 
     public bool Load(string saveName) {
+
+        sessionInitialized = false;
+
         if (!saveFiles.ContainsKey(saveName)) {
             return false;
         }

@@ -34,23 +34,30 @@ public class SceneController : MonoBehaviour {
     }
 
     void Start() {
-        DialogueController.instance.DialogueOverEvent += OnDialogueEventOver;
+        if (!GameState.instance.sessionInitialized) {
+            DialogueController.instance.DialogueOverEvent += OnDialogueEventOver;
+            CheckQuests();
+
+            if (GameState.instance.completedEvents.Contains("VillageArrival")) {
+                GoToPlaza();
+                SaveGame();
+                DialogueController.instance.Play("WelcomeBack");
+            }
+            else {
+                GoToMap();
+                cityHUD.SetActive(false);
+                StartCoroutine("StartVillageArrival");
+            }
+            GameState.instance.sessionInitialized = true;
+        }
+
+        if (GameState.instance.unlockedQuests.Count == 0)
+            CheckQuests();
+        
+        RefreshQuests();
         RefreshBuildings();
         RefreshMinigames();
-        RefreshQuests();
         RefreshResources();
-
-        if (GameState.instance.completedEvents.Contains("VillageArrival")) {
-            CheckQuests();
-            GoToPlaza();
-            SaveGame();
-            DialogueController.instance.Play("WelcomeBack");
-        }
-        else {
-            GoToMap();
-            cityHUD.SetActive(false);
-            StartCoroutine("StartVillageArrival");
-        }
 
 	}
 	
