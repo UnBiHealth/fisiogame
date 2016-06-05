@@ -5,9 +5,11 @@ using System.Collections;
 public class SceneController : MonoBehaviour {
 
     [SerializeField]
-    ListView questListView;
-    [SerializeField]
-    ListView resourcesListView;
+	ListView questListView;
+	[SerializeField]
+	ListView resourcesListViewA;
+	[SerializeField]
+	ListView resourcesListViewB;
     [SerializeField]
     GameObject plazaContainer;
     [SerializeField]
@@ -139,8 +141,16 @@ public class SceneController : MonoBehaviour {
     }
 
     public void RefreshResources() {
+		int count = 0;
+
         foreach (var pair in GameState.instance.resources) {
-            resourcesListView.Add(pair.Key, pair.Value);
+			
+			if (count <= GameState.instance.resources.Count / 2)
+	            resourcesListViewA.Add(pair.Key, pair.Value);
+			else
+				resourcesListViewB.Add(pair.Key, pair.Value);
+				
+			count++;
         }
     }
 
@@ -159,8 +169,12 @@ public class SceneController : MonoBehaviour {
     void CheckQuests() {
         foreach (var quest in GameData.instance.quests) {
             int questNumber = int.Parse(quest.Key);
-            if (GameState.instance.completedQuests.Contains(questNumber)) continue;
-            if (GameState.instance.unlockedQuests.Contains(questNumber)) continue;
+            if (GameState.instance.completedQuests.Contains(questNumber)) // Quest is completed
+				continue;
+            if (GameState.instance.unlockedQuests.Contains(questNumber))  // Quest is already in progress
+				continue;
+			if (!GameState.instance.completedQuests.Contains(quest.Value.unlockedBy)) // Quest is missing requirements
+				continue;
             GameState.instance.UnlockQuest(questNumber);
             string questEvent = quest.Value.questOpeningEvent;
             if (questEvent.Length > 0) 

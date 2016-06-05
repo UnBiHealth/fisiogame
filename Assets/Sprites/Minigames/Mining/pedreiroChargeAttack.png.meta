@@ -1,0 +1,225 @@
+fileFormatVersion: 2
+guid: 08f0fd4f3831f194084dc2315d0ac185
+timeCreated: 1465134484
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: pedreiroChargeAttack_0
+    21300002: pedreiroChargeAttack_1
+    21300004: pedreiroChargeAttack_2
+    21300006: pedreiroChargeAttack_3
+    21300008: pedreiroChargeAttack_4
+    21300010: pedreiroChargeAttack_5
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -3
+  maxTextureSize: 4096
+  textureSettings:
+    filterMode: 0
+    aniso: -1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: pedreiroChargeAttack_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 368
+        height: 280
+      alignment: 9
+      pivot: {x: 0.33, y: 0.31}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -32.440002, y: 79.2}
+        - {x: -70.44, y: 68.2}
+        - {x: -71.44, y: 66.2}
+        - {x: -71.44, y: -56.800003}
+        - {x: -66.44, y: -80.8}
+        - {x: 44.559998, y: -80.8}
+        - {x: 52.559998, y: -45.800003}
+        - {x: 52.559998, y: 28.199997}
+        - {x: 38.559998, y: 79.2}
+    - name: pedreiroChargeAttack_1
+      rect:
+        serializedVersion: 2
+        x: 368
+        y: 0
+        width: 368
+        height: 280
+      alignment: 9
+      pivot: {x: 0.33, y: 0.31}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -68.44, y: 107.2}
+        - {x: -94.44, y: 86.2}
+        - {x: -95.44, y: 79.2}
+        - {x: -95.44, y: 0.19999695}
+        - {x: -61.440002, y: -80.8}
+        - {x: 47.559998, y: -80.8}
+        - {x: 64.56, y: -40.800003}
+        - {x: 64.56, y: 49.199997}
+        - {x: 25.559998, y: 107.2}
+    - name: pedreiroChargeAttack_2
+      rect:
+        serializedVersion: 2
+        x: 736
+        y: 0
+        width: 368
+        height: 280
+      alignment: 9
+      pivot: {x: 0.33, y: 0.31}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -33.440002, y: 159.2}
+        - {x: -89.44, y: 159.2}
+        - {x: -99.44, y: 138.2}
+        - {x: -99.44, y: 22.199997}
+        - {x: -84.44, y: -61.800003}
+        - {x: -55.440002, y: -78.8}
+        - {x: -53.440002, y: -80.8}
+        - {x: 45.559998, y: -80.8}
+        - {x: 60.559998, y: -9.800003}
+        - {x: 60.559998, y: 95.2}
+        - {x: 33.559998, y: 132.2}
+      - - {x: 58.559998, y: 59.199997}
+        - {x: 56.559998, y: 57.199997}
+        - {x: 56.559998, y: 53.199997}
+        - {x: 58.559998, y: 51.199997}
+        - {x: 62.559998, y: 51.199997}
+        - {x: 64.56, y: 53.199997}
+        - {x: 64.56, y: 57.199997}
+        - {x: 62.559998, y: 59.199997}
+    - name: pedreiroChargeAttack_3
+      rect:
+        serializedVersion: 2
+        x: 1104
+        y: 0
+        width: 368
+        height: 280
+      alignment: 9
+      pivot: {x: 0.33, y: 0.31}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 60.56006, y: 71.2}
+        - {x: 60.56006, y: 61.199997}
+        - {x: 61.56006, y: 58.199997}
+        - {x: 72.56006, y: 59.199997}
+        - {x: 72.56006, y: 101.2}
+        - {x: 55.56006, y: 172.2}
+        - {x: 9.560059, y: 183.2}
+        - {x: -69.43994, y: 183.2}
+        - {x: -66.43994, y: 162.2}
+        - {x: -62.43994, y: 149.2}
+        - {x: -57.43994, y: 151.2}
+        - {x: -55.43994, y: 153.2}
+        - {x: -63.43994, y: 141.2}
+        - {x: -63.43994, y: 133.2}
+        - {x: -61.43994, y: 131.2}
+        - {x: -57.43994, y: 131.2}
+        - {x: -55.43994, y: 133.2}
+        - {x: -55.43994, y: 135.2}
+        - {x: -53.43994, y: 135.2}
+        - {x: -51.43994, y: 137.2}
+        - {x: -51.43994, y: 135.2}
+        - {x: -53.43994, y: 135.2}
+        - {x: -55.43994, y: 133.2}
+        - {x: -55.43994, y: 131.2}
+        - {x: -57.43994, y: 131.2}
+        - {x: -60.43994, y: 130.2}
+        - {x: -83.43994, y: 95.2}
+        - {x: -83.43994, y: -5.800003}
+        - {x: -65.43994, y: -80.8}
+        - {x: 55.56006, y: -80.8}
+        - {x: 67.56006, y: 36.199997}
+        - {x: 63.56006, y: 57.199997}
+        - {x: 60.56006, y: 55.199997}
+    - name: pedreiroChargeAttack_4
+      rect:
+        serializedVersion: 2
+        x: 1472
+        y: 0
+        width: 368
+        height: 280
+      alignment: 9
+      pivot: {x: 0.33, y: 0.31}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -51.43994, y: 187.2}
+        - {x: -50.43994, y: 182.2}
+        - {x: -83.43994, y: 85.2}
+        - {x: -83.43994, y: 43.199997}
+        - {x: -69.43994, y: -35.800003}
+        - {x: -55.43994, y: -78.8}
+        - {x: -53.43994, y: -80.8}
+        - {x: 48.56006, y: -80.8}
+        - {x: 84.56006, y: 15.199997}
+        - {x: 84.56006, y: 166.2}
+        - {x: 30.560059, y: 187.2}
+    - name: pedreiroChargeAttack_5
+      rect:
+        serializedVersion: 2
+        x: 1840
+        y: 0
+        width: 368
+        height: 280
+      alignment: 9
+      pivot: {x: 0.33, y: 0.31}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 90.56006, y: 55.199997}
+        - {x: 60.56006, y: 144.2}
+        - {x: 30.560059, y: 155.2}
+        - {x: 2.5600586, y: 155.2}
+        - {x: 0.5600586, y: 153.2}
+        - {x: -2.4399414, y: 186.2}
+        - {x: -7.4399414, y: 191.2}
+        - {x: -48.43994, y: 191.2}
+        - {x: -83.43994, y: 135.2}
+        - {x: -83.43994, y: -79.8}
+        - {x: -66.43994, y: -80.8}
+        - {x: 50.56006, y: -80.8}
+        - {x: 96.56006, y: 35.199997}
+        - {x: 96.56006, y: 54.199997}
+        - {x: 95.56006, y: 57.199997}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

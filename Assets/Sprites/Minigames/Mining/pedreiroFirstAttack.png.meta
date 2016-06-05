@@ -1,0 +1,297 @@
+fileFormatVersion: 2
+guid: 4c4f0ba35d918504a9d66a98e03a2011
+timeCreated: 1465133813
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: pedreiroFirstAttack_0
+    21300002: pedreiroFirstAttack_1
+    21300004: pedreiroFirstAttack_2
+    21300006: pedreiroFirstAttack_3
+    21300008: pedreiroFirstAttack_4
+    21300010: pedreiroFirstAttack_5
+    21300012: pedreiroFirstAttack_6
+    21300014: pedreiroFirstAttack_7
+    21300016: pedreiroFirstAttack_8
+    21300018: pedreiroFirstAttack_9
+    21300020: pedreiroFirstAttack_10
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -3
+  maxTextureSize: 4096
+  textureSettings:
+    filterMode: 0
+    aniso: -1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: pedreiroFirstAttack_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 368
+        height: 280
+      alignment: 9
+      pivot: {x: 0.33, y: 0.31}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 40.559998, y: 71.2}
+        - {x: -5.4400024, y: 71.2}
+        - {x: -33.440002, y: 45.199997}
+        - {x: -55.440002, y: -49.800003}
+        - {x: -55.440002, y: -80.8}
+        - {x: 46.559998, y: -80.8}
+        - {x: 64.56, y: -65.8}
+        - {x: 72.56, y: -36.800003}
+        - {x: 72.56, y: 53.199997}
+    - name: pedreiroFirstAttack_1
+      rect:
+        serializedVersion: 2
+        x: 368
+        y: 0
+        width: 368
+        height: 280
+      alignment: 9
+      pivot: {x: 0.33, y: 0.31}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -15.440002, y: 71.2}
+        - {x: -35.440002, y: 44.199997}
+        - {x: -55.440002, y: -58.800003}
+        - {x: -55.440002, y: -80.8}
+        - {x: 49.559998, y: -80.8}
+        - {x: 72.56, y: -23.800003}
+        - {x: 72.56, y: 63.199997}
+        - {x: 70.56, y: 71.2}
+    - name: pedreiroFirstAttack_2
+      rect:
+        serializedVersion: 2
+        x: 736
+        y: 0
+        width: 368
+        height: 280
+      alignment: 9
+      pivot: {x: 0.33, y: 0.31}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 40.559998, y: 71.2}
+        - {x: -5.4400024, y: 71.2}
+        - {x: -33.440002, y: 45.199997}
+        - {x: -55.440002, y: -49.800003}
+        - {x: -55.440002, y: -80.8}
+        - {x: 46.559998, y: -80.8}
+        - {x: 64.56, y: -65.8}
+        - {x: 72.56, y: -36.800003}
+        - {x: 72.56, y: 53.199997}
+    - name: pedreiroFirstAttack_3
+      rect:
+        serializedVersion: 2
+        x: 1104
+        y: 0
+        width: 368
+        height: 280
+      alignment: 9
+      pivot: {x: 0.33, y: 0.31}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -15.439941, y: 71.2}
+        - {x: -35.43994, y: 44.199997}
+        - {x: -55.43994, y: -58.800003}
+        - {x: -55.43994, y: -80.8}
+        - {x: 49.56006, y: -80.8}
+        - {x: 72.56006, y: -23.800003}
+        - {x: 72.56006, y: 63.199997}
+        - {x: 70.56006, y: 71.2}
+    - name: pedreiroFirstAttack_4
+      rect:
+        serializedVersion: 2
+        x: 1472
+        y: 0
+        width: 368
+        height: 280
+      alignment: 9
+      pivot: {x: 0.33, y: 0.31}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 40.56006, y: 71.2}
+        - {x: -5.4399414, y: 71.2}
+        - {x: -33.43994, y: 45.199997}
+        - {x: -55.43994, y: -49.800003}
+        - {x: -55.43994, y: -80.8}
+        - {x: 46.56006, y: -80.8}
+        - {x: 64.56006, y: -65.8}
+        - {x: 72.56006, y: -36.800003}
+        - {x: 72.56006, y: 53.199997}
+    - name: pedreiroFirstAttack_5
+      rect:
+        serializedVersion: 2
+        x: 1840
+        y: 0
+        width: 368
+        height: 280
+      alignment: 9
+      pivot: {x: 0.33, y: 0.31}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 48.56006, y: 33.199997}
+        - {x: 48.56006, y: 29.199997}
+        - {x: 48.56006, y: 45.199997}
+        - {x: 49.56006, y: 50.199997}
+        - {x: 39.56006, y: 71.2}
+        - {x: -6.4399414, y: 71.2}
+        - {x: -33.43994, y: 45.199997}
+        - {x: -55.43994, y: -49.800003}
+        - {x: -55.43994, y: -80.8}
+        - {x: 55.56006, y: -80.8}
+        - {x: 76.56006, y: -29.800003}
+        - {x: 76.56006, y: 37.199997}
+        - {x: 51.56006, y: 45.199997}
+    - name: pedreiroFirstAttack_6
+      rect:
+        serializedVersion: 2
+        x: 2208
+        y: 0
+        width: 368
+        height: 280
+      alignment: 9
+      pivot: {x: 0.33, y: 0.31}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -13.439941, y: 67.2}
+        - {x: -41.43994, y: 24.199997}
+        - {x: -55.43994, y: -48.800003}
+        - {x: -55.43994, y: -80.8}
+        - {x: 55.56006, y: -80.8}
+        - {x: 72.56006, y: -39.800003}
+        - {x: 72.56006, y: 9.199997}
+        - {x: 38.56006, y: 67.2}
+    - name: pedreiroFirstAttack_7
+      rect:
+        serializedVersion: 2
+        x: 2576
+        y: 0
+        width: 368
+        height: 280
+      alignment: 9
+      pivot: {x: 0.33, y: 0.31}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 36.56006, y: -50.800003}
+        - {x: 34.56006, y: -48.800003}
+        - {x: 32.56006, y: -48.800003}
+        - {x: 32.56006, y: -44.800003}
+        - {x: 33.56006, y: -48.800003}
+        - {x: 36.56006, y: -48.800003}
+        - {x: 36.56006, y: -54.800003}
+        - {x: 38.56006, y: -56.800003}
+        - {x: 55.56006, y: -58.800003}
+        - {x: 60.56006, y: -54.800003}
+        - {x: 60.56006, y: 14.199997}
+        - {x: 48.56006, y: 63.199997}
+        - {x: -14.439941, y: 63.199997}
+        - {x: -47.43994, y: 18.199997}
+        - {x: -55.43994, y: -33.800003}
+        - {x: -55.43994, y: -84.8}
+        - {x: 40.56006, y: -84.8}
+        - {x: 53.56006, y: -71.8}
+        - {x: 39.56006, y: -67.8}
+        - {x: 36.56006, y: -68.8}
+    - name: pedreiroFirstAttack_8
+      rect:
+        serializedVersion: 2
+        x: 2944
+        y: 0
+        width: 368
+        height: 280
+      alignment: 9
+      pivot: {x: 0.33, y: 0.31}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -46.43994, y: -86.8}
+        - {x: 45.56006, y: -86.8}
+        - {x: 48.56006, y: -84.8}
+        - {x: 48.56006, y: 59.199997}
+        - {x: -48.43994, y: 59.199997}
+        - {x: -55.43994, y: -36.800003}
+        - {x: -55.43994, y: -81.8}
+    - name: pedreiroFirstAttack_9
+      rect:
+        serializedVersion: 2
+        x: 3312
+        y: 0
+        width: 368
+        height: 280
+      alignment: 9
+      pivot: {x: 0.33, y: 0.31}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -11.439941, y: 55.199997}
+        - {x: -55.43994, y: -21.800003}
+        - {x: -55.43994, y: -80.8}
+        - {x: -30.439941, y: -86.8}
+        - {x: 47.56006, y: -86.8}
+        - {x: 48.56006, y: -80.8}
+        - {x: 48.56006, y: 43.199997}
+        - {x: 43.56006, y: 55.199997}
+    - name: pedreiroFirstAttack_10
+      rect:
+        serializedVersion: 2
+        x: 3680
+        y: 0
+        width: 368
+        height: 280
+      alignment: 9
+      pivot: {x: 0.33, y: 0.31}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 30.560059, y: 51.199997}
+        - {x: -18.439941, y: 51.199997}
+        - {x: -59.43994, y: -18.800003}
+        - {x: -59.43994, y: -77.8}
+        - {x: -58.43994, y: -80.8}
+        - {x: -39.43994, y: -86.8}
+        - {x: 44.56006, y: -86.8}
+        - {x: 44.56006, y: 38.199997}
+        - {x: 33.56006, y: 50.199997}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

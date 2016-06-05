@@ -1,0 +1,181 @@
+fileFormatVersion: 2
+guid: a35043410151688498d4a1ecd3627ff7
+timeCreated: 1465134672
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: pedreiroWait_0
+    21300002: pedreiroWait_1
+    21300004: pedreiroWait_2
+    21300006: pedreiroWait_3
+    21300008: pedreiroWait_4
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -3
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: 0
+    aniso: -1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: pedreiroWait_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 368
+        height: 280
+      alignment: 9
+      pivot: {x: 0.33, y: 0.31}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 31.559998, y: 158.2}
+        - {x: 2.5599976, y: 155.2}
+        - {x: 0.55999756, y: 153.2}
+        - {x: -2.4400024, y: 186.2}
+        - {x: -7.4400024, y: 191.2}
+        - {x: -48.440002, y: 191.2}
+        - {x: -83.44, y: 135.2}
+        - {x: -83.44, y: -79.8}
+        - {x: -66.44, y: -80.8}
+        - {x: 50.559998, y: -80.8}
+        - {x: 88.56, y: 21.199997}
+        - {x: 88.56, y: 64.2}
+        - {x: 59.559998, y: 143.2}
+    - name: pedreiroWait_1
+      rect:
+        serializedVersion: 2
+        x: 368
+        y: 0
+        width: 368
+        height: 280
+      alignment: 9
+      pivot: {x: 0.33, y: 0.31}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 2.5599976, y: 155.2}
+        - {x: 0.55999756, y: 153.2}
+        - {x: -2.4400024, y: 186.2}
+        - {x: -7.4400024, y: 191.2}
+        - {x: -48.440002, y: 191.2}
+        - {x: -83.44, y: 135.2}
+        - {x: -83.44, y: -79.8}
+        - {x: -68.44, y: -80.8}
+        - {x: 50.559998, y: -80.8}
+        - {x: 92.56, y: 41.199997}
+        - {x: 92.56, y: 108.2}
+        - {x: 34.559998, y: 174.2}
+    - name: pedreiroWait_2
+      rect:
+        serializedVersion: 2
+        x: 736
+        y: 0
+        width: 368
+        height: 280
+      alignment: 9
+      pivot: {x: 0.33, y: 0.31}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -3.4400024, y: 191.2}
+        - {x: -61.440002, y: 191.2}
+        - {x: -83.44, y: 99.2}
+        - {x: -83.44, y: 23.199997}
+        - {x: -62.440002, y: -33.800003}
+        - {x: -60.440002, y: -68.8}
+        - {x: -55.440002, y: -78.8}
+        - {x: -53.440002, y: -80.8}
+        - {x: 50.559998, y: -80.8}
+        - {x: 92.56, y: 34.199997}
+        - {x: 92.56, y: 116.2}
+        - {x: 68.56, y: 172.2}
+    - name: pedreiroWait_3
+      rect:
+        serializedVersion: 2
+        x: 1104
+        y: 0
+        width: 368
+        height: 280
+      alignment: 9
+      pivot: {x: 0.33, y: 0.31}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 2.5600586, y: 155.2}
+        - {x: 0.5600586, y: 153.2}
+        - {x: -2.4399414, y: 186.2}
+        - {x: -7.4399414, y: 191.2}
+        - {x: -48.43994, y: 191.2}
+        - {x: -83.43994, y: 135.2}
+        - {x: -83.43994, y: -79.8}
+        - {x: -71.43994, y: -80.8}
+        - {x: 51.56006, y: -80.8}
+        - {x: 92.56006, y: -8.800003}
+        - {x: 92.56006, y: 124.2}
+        - {x: 32.56006, y: 184.2}
+    - name: pedreiroWait_4
+      rect:
+        serializedVersion: 2
+        x: 1472
+        y: 0
+        width: 368
+        height: 280
+      alignment: 9
+      pivot: {x: 0.33, y: 0.31}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 90.56006, y: 55.199997}
+        - {x: 60.56006, y: 144.2}
+        - {x: 30.560059, y: 155.2}
+        - {x: 2.5600586, y: 155.2}
+        - {x: 0.5600586, y: 153.2}
+        - {x: -2.4399414, y: 186.2}
+        - {x: -7.4399414, y: 191.2}
+        - {x: -48.43994, y: 191.2}
+        - {x: -83.43994, y: 135.2}
+        - {x: -83.43994, y: -79.8}
+        - {x: -66.43994, y: -80.8}
+        - {x: 50.56006, y: -80.8}
+        - {x: 96.56006, y: 35.199997}
+        - {x: 96.56006, y: 54.199997}
+        - {x: 95.56006, y: 57.199997}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
