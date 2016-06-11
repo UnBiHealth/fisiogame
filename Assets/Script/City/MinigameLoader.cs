@@ -11,7 +11,6 @@ public class MinigameLoader : MonoBehaviour {
         this.minigame = minigame;
         repetitions = -1;
         gameObject.SetActive(true);
-        GameControl.instance.RegisterListener(OnExerciseReady, "repetitions");
     }
 
     void Update() {
@@ -23,7 +22,7 @@ public class MinigameLoader : MonoBehaviour {
     }
 
     void OnEnable() {
-
+        GameControl.instance.RegisterListener(OnExerciseReady, "repetitions");
     }
 
     void OnDisable() {
