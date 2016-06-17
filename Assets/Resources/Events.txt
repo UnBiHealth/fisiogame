@@ -1,4 +1,4 @@
-﻿{
+{
 	"VillageArrival":
 	{
 		"questsUnlocked": [1],
@@ -14,8 +14,8 @@
 			"%do:autoSkipNext",
 			"...",
 			"Ah, sim! Me avisaram que você chegaria.",
-			"Sou Efigênio, o prefeito. Fico feliz em te conhecer.",
-			"Andavamos precisando de alguém para organizar as coisas.",
+			"Sou Efigênio, o prefeito da vila. Fico feliz em te conhecer.",
+			"Andavamos precisando de alguém para organizar as coisas por aqui.",
 			"Hoje em dia, a burocracia me toma muito tempo...",
 			"Enfim. Espero que goste da nossa pacata vila.",
 			"A primeira coisa que você deve construir é uma <color=#cc0000>casa</color>.",
@@ -39,7 +39,7 @@
 			"%do:highlightLeft",
 			"Alguém precisa de uma casa e eu pago o pato! Oras...",
 			"<i>(Araújo suspira)</i>",
-			"Vem comigo. Vou te ensinar a cuidar das coisas por aqui..."
+			"Vem comigo. Vou te mostrar como vai ser o seu trabalho..."
 		]
 	},
 	"Tutorial":
@@ -76,6 +76,40 @@
 			"Vamos ver o que os moradores precisam hoje?"
 		]		
 	},
+	"HouseBuilt":
+	{
+		"questsUnlocked": [2,3,4],
+		"script": 
+		[
+			"%frameInterval=3, %rightSpeaker=lumberjack, %leftSpeaker=mayor",
+			"Tã-dã! Uma casa toda sua!",
+			"Agora você pode começar a trabalhar.",
+			"Avisei os outros moradores para virem falar com você.",
+			"Boa sorte!",
+			"%frameInterval=0, %do:noLeftSprite",
+			"<i>(Efigênio sai andando, saltitante)</i>",
+			"%frameInterval=3, %do:hideLeft, %do:highlightRight",
+			"...Então...",
+			"Até que você se saiu bem. Talvez eu tenha te julgado errado.",
+			"Chamei um amigo pra ajudar aqui na vila. Ele é um pedreiro.",
+			"Acho provável que você precise de pedra em breve.",
+			"O Pietro deve te pedir uma <color=#cc0000>casa de ferramentas</color> para trabalhar.",
+			"Feito isso, ele te acompanhará no trabalho assim como eu.",
+			"É importante atrair pessoas com habilidades assim para a vila.",
+			"Mas não negligencie os outros pedidos que você receber.",
+			"Algumas pessoas vão trabalhar enquanto você está fora da vila.",
+			"Você receberá os resultados assim que voltar.",
+			"Fique de olho nos seus recursos disponíveis.",
+			"Bom... Acho que é disso que você precisa saber. Vou indo.",
+			"%frameInterval=0, %do:hideRight",
+			"<i>(Machado nas costas, Araújo caminha para casa)</i>",
+			"%do:hideRight",
+			"...",
+			"%leftSpeaker=farmer",
+			"Olar!"
+			
+		]		
+	},
 	"Demo":
 	{
 		"script": [
@@ -106,15 +140,15 @@
 	{	
 		"script": [
 			"%leftSpeaker=Lumberjack",
-			"<size=108>hOI!!!!!</size>",
-			"<size=108>i'm tEMMIE!!!!</size>",
+			"<size=170>hOI!!!!!</size>",
+			"<size=170>i'm tEMMIE!!!!</size>",
 			"%frameInterval=3",			
 			"It's a beautiful day outside.",
-			"Flowers are <i>blooming</i>, birds are <i>singing</i>...",
+			"Flowers are blooming, birds are singing...",
 			"On days like these, kids like you...",
 			"%delay=120",
 			"%frameInterval=10, %mute=true",
-			"<b><color=red>Should be burning in hell.</color></b>"
+			"Should be burning in hell."
 		]
 	}
 }

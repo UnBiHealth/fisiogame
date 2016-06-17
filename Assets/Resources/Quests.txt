@@ -42,13 +42,12 @@
 	},
 
 	"4": {
-		"name": "Dom Quixote Não Aprova",
-		"description": "A vila está crescendo, e precisamos de mais comida.",
+		"name": "Coma Suas Verduras!",
+		"description": "Se alimente bem para viver bem!",
 		"requirements": {
-			"Wood": 150,
-			"Fabric": 50
+			"Wood": 100
 		},
-		"builds": "Windmill",
+		"builds": "VegetablePlot",
 		"unlockedBy": 1,
 		"minimumSession": 1,
 		"questOpeningEvent": "",
@@ -88,12 +87,13 @@
 	},
 
 	"7": {
-		"name": "Coma Suas Verduras!",
-		"description": "Se alimente bem para viver bem!",
+		"name": "Dom Quixote Não Aprova",
+		"description": "A vila está crescendo, e precisamos de mais comida.",
 		"requirements": {
-			"Wood": 100
+			"Wood": 150,
+			"Fabric": 50
 		},
-		"builds": "VegetablePlot",
+		"builds": "Windmill",
 		"unlockedBy": 2,
 		"minimumSession": 2,
 		"questOpeningEvent": "",

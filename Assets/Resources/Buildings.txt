@@ -1,182 +1,92 @@
 {
 	"House":
 	{
-		"name": "Casa",
-		"yield": "",
-		"yieldAmount": 0,
-		"buildPosition": {
-			"x": 0,
-			"y": 0
-		}
+		"name": "Casa"
 	},
 	"ToolShack":
 	{
-		"name": "Casa de Ferramentas",
-		"yield": "",
-		"yieldAmount": 0,
-		"buildPosition": {
-			"x": 0,
-			"y": 0
-		}
+		"name": "Casa de Ferramentas"
 	},
 	"SheepPen":
 	{
 		"name": "Cercado de Ovelhas",
 		"yield": "Wool",
-		"yieldAmount": 20,
-		"buildPosition": {
-			"x": 0,
-			"y": 0
-		}
-	},
-	"Windmill":
-	{
-		"name": "Moinho de Vento",
-		"yield": "Food",
-		"yieldAmount": 20,
-		"buildPosition": {
-			"x": 0,
-			"y": 0
-		}
-	},
-	"Smithy":
-	{
-		"name": "Casa de Forja",
-		"yield": "",
-		"yieldAmount": 0,
-		"buildPosition": {
-			"x": 0,
-			"y": 0
-		}
-	},
-	"MayorHall":
-	{
-		"name": "Prefeitura",
-		"yield": "",
-		"yieldAmount": 0,
-		"buildPosition": {
-			"x": 0,
-			"y": 0
-		}
+		"yieldAmount": 0.5
 	},
 	"VegetablePlot":
 	{
 		"name": "Horta",
 		"yield": "Food",
-		"yieldAmount": 20,
-		"buildPosition": {
-			"x": 0,
-			"y": 0
-		}
+		"yieldAmount": 0.5
+	},
+	"Smithy":
+	{
+		"name": "Casa de Forja"
+	},
+	"MayorHall":
+	{
+		"name": "Prefeitura"
+	},
+	"Windmill":
+	{
+		"name": "Moinho de Vento",
+		"multiplier": 1.5,
+		"multipliedYield": "Food"
 	},
 	"Fair":
 	{
 		"name": "Feira",
 		"yield": "Gold",
-		"yieldAmount": 10,
-		"buildPosition": {
-			"x": 0,
-			"y": 0
-		}
+		"yieldAmount": 0.2
 	},
 	"Stable":
 	{
-		"name": "Estábulo",
-		"yield": "",
-		"yieldAmount": 0,
-		"buildPosition": {
-			"x": 0,
-			"y": 0
-		}
+		"name": "Estábulo"
 	},
 	"PaperMaker":
 	{
 		"name": "Fábrica de Papel",
-		"yield": "Paper",
-		"yieldAmount": 20,
-		"buildPosition": {
-			"x": 0,
-			"y": 0
-		}
+		"ratio": 0.5,
+		"fromResource": "Wood",
+		"toResource": "Paper"
 	},
 	"FabricMaker":
 	{
 		"name": "Fábrica de Tecido",
-		"yield": "Fabric",
-		"yieldAmount": 20,
-		"buildPosition": {
-			"x": 0,
-			"y": 0
-		}
+		"ratio": 1.0,
+		"fromResource": "Wool",
+		"toResource": "Fabric"
 	},
 	"BrickMaker":
 	{
 		"name": "Olaria",
 		"yield": "Brick",
-		"yieldAmount": 20,
-		"buildPosition": {
-			"x": 0,
-			"y": 0
-		}
+		"yieldAmount": 0.5
 	},
 	"Bank":
 	{
 		"name": "Banco",
-		"yield": "Gold",
-		"yieldAmount": 20,
-		"buildPosition": {
-			"x": 0,
-			"y": 0
-		}
+		"multiplier": 2.0,
+		"multipliedYield": "Gold"
 	},
 	"Studio":
 	{
-		"name": "Estúdio",
-		"yield": "",
-		"yieldAmount": 0,
-		"buildPosition": {
-			"x": 0,
-			"y": 0
-		}
+		"name": "Estúdio"
 	},
 	"Tavern":
 	{
-		"name": "Taverna",
-		"yield": "",
-		"yieldAmount": 0,
-		"buildPosition": {
-			"x": 0,
-			"y": 0
-		}
+		"name": "Taverna"
 	},
 	"Museum":
 	{
-		"name": "Museu",
-		"yield": "",
-		"yieldAmount": 0,
-		"buildPosition": {
-			"x": 0,
-			"y": 0
-		}
+		"name": "Museu"
 	},
 	"Statue":
 	{
-		"name": "Estátua do Fundador",
-		"yield": "",
-		"yieldAmount": 0,
-		"buildPosition": {
-			"x": 0,
-			"y": 0
-		}
+		"name": "Estátua do Fundador"
 	},
 	"Library":
 	{
-		"name": "Biblioteca Municipal",
-		"yield": "",
-		"yieldAmount": 0,
-		"buildPosition": {
-			"x": 0,
-			"y": 0
-		}
+		"name": "Biblioteca Municipal"
 	}
 }

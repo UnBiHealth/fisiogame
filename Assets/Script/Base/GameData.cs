@@ -40,9 +40,9 @@ public class GameData : MonoBehaviour {
         temp = MiniJSON.Json.Deserialize(buildingJSON) as JSONObject;
         foreach (var building in temp) {
             JSONObject obj = temp[building.Key] as JSONObject;
-            buildings.Add(building.Key, new BuildingData(obj["name"] as string, obj["yield"] as string, (long)obj["yieldAmount"], 
-                                                         (int)((long)(obj["buildPosition"] as JSONObject)["x"]),
-                                                         (int)((long)(obj["buildPosition"] as JSONObject)["y"])));
+            buildings.Add(building.Key, new BuildingData(GetString(obj, "name"), GetString(obj, "yield"), GetDouble(obj, "yieldAmount"),
+                                                         GetDouble(obj, "ratio"), GetString(obj, "fromResource"), GetString(obj, "toResource"),
+                                                         GetDouble(obj, "multiplier"), GetString(obj, "multipliedYield")));
         }
 
         TextAsset questFile = Resources.Load("Quests") as TextAsset;
@@ -95,23 +95,74 @@ public class GameData : MonoBehaviour {
         resources.Add("Marble", new ResourceData("Mármore", spriteIndex.marbleIcon, spriteIndex.marbleIconHighlight));
         resources.Add("Coal", new ResourceData("Carvão", spriteIndex.coalIcon, spriteIndex.coalIconHighlight));
 	}
+
+    // C# GENERICS ARE BAD AND MICROSOFT SHOULD BE ASHAMED
+    long GetLong(JSONObject obj, string key) {
+        try {
+            long value = (long)obj[key];
+            return value;
+        }
+        catch (System.Exception e) {
+            long value = 0;
+            return value;
+        }
+    }
+
+    double GetDouble(JSONObject obj, string key) {
+        try {
+            double value = (double)obj[key];
+            return value;
+        }
+        catch (System.Exception e) {
+            double value = 0;
+            return value;
+        }
+    }
+
+    string GetString(JSONObject obj, string key) {
+        try {
+            string value = obj[key] as string;
+            return value;
+        }
+        catch (System.Exception e) {
+            string value = "";
+            return value;
+        }
+    }
+
     #endregion
 
     #region Buildings
     public class BuildingData {
-        public BuildingData(string name, string yield, long yieldAmount, int buildX, int buildY) {
+        public BuildingData(string name, string yield, double yieldAmount,
+                            double exchangeRatio, string fromResource, string toResource,
+                            double multiplier, string multipliedYield) {
             this.name = name;
             this.yield = yield;
-            this.yieldAmount = (int)yieldAmount;
-            this.buildPosition = new Vector2(buildX, buildY);
+            this.yieldAmount = (float)yieldAmount;
+            this.triggersYield = yield.Length > 0;
+            this.exchangeRatio = (float)exchangeRatio;
+            this.fromResource = fromResource;
+            this.toResource = toResource;
+            this.triggersExchange = exchangeRatio > 0;
+            this.multiplier = (float)multiplier;
+            this.multipliedYield = multipliedYield;
+            this.triggersMultiplier = multiplier > 0;
         }
         public string name { get; private set; }
         public string yield { get; private set; }
-        public int yieldAmount { get; private set; }
-        public Vector2 buildPosition { get; private set; }
+        public float yieldAmount { get; private set; }
+        public string fromResource { get; private set; }
+        public string toResource { get; private set; }
+        public float exchangeRatio { get; private set; }
+        public float multiplier { get; private set; }
+        public string multipliedYield { get; private set; }
+        public bool triggersYield { get; private set; }
+        public bool triggersExchange { get; private set; }
+        public bool triggersMultiplier { get; private set; }
 
         public override string ToString() {
-            return name + " - " + yield + " - " + yieldAmount + " - " + buildPosition;
+            return name + " - " + yield + " " + yieldAmount + " - " + fromResource + " " + toResource + " " + exchangeRatio + " - " + multipliedYield + " " + multiplier;
         }
     }
 

@@ -11,6 +11,8 @@ public class GameState : MonoBehaviour {
     JSONObject saveFiles = new JSONObject();
 
     public bool sessionInitialized;
+    public int lastGameRepetitions;
+    public Dictionary<string, float> activeMultipliers;
 
     public bool mute;
 
@@ -85,6 +87,7 @@ public class GameState : MonoBehaviour {
 
     public bool LoadDefault(string saveName) {
         sessionInitialized = false; 
+        lastGameRepetitions = 0;
 
         if (saveFiles.ContainsKey(saveName))
             return false;
@@ -117,6 +120,7 @@ public class GameState : MonoBehaviour {
     public bool Load(string saveName) {
 
         sessionInitialized = false;
+        lastGameRepetitions = 0;
 
         if (!saveFiles.ContainsKey(saveName)) {
             return false;

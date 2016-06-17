@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using System.Collections.Generic;
 
 public class SceneController : MonoBehaviour {
 
@@ -10,6 +11,8 @@ public class SceneController : MonoBehaviour {
 	ListView resourcesListViewA;
 	[SerializeField]
 	ListView resourcesListViewB;
+    [SerializeField]
+    GameObject buildingContainer;
     [SerializeField]
     GameObject plazaContainer;
     [SerializeField]
@@ -144,7 +147,30 @@ public class SceneController : MonoBehaviour {
     }
 
     public void RefreshBuildings() {
-        // TODO
+        Building[] buildings = buildingContainer.transform.GetComponentsInChildren<Building>(true);
+        Dictionary<string, float> activeMultipliers = new Dictionary<string, float>();
+        Debug.Log("What the buildings " + buildings.Length);
+
+        foreach (string resource in GameState.instance.resources.Keys) {
+            activeMultipliers[resource] = 1;
+        }
+
+        foreach (var building in buildings) {
+            if (!GameState.instance.completedBuildings.Contains(building.gameObject.name)) {
+                building.gameObject.SetActive(false);
+            }
+            else {
+                Debug.Log(building.name);
+                if (building.data.triggersMultiplier) {
+                    activeMultipliers[building.data.multipliedYield] += building.data.multiplier - 1;
+                }
+                if (building.data.triggersYield && GameState.instance.lastGameRepetitions > 0) {
+                    GameState.instance.resources[building.data.yield] += (int)Mathf.Floor(building.data.yieldAmount * GameState.instance.lastGameRepetitions);
+                }
+            }
+        }
+        GameState.instance.activeMultipliers = activeMultipliers;
+        GameState.instance.lastGameRepetitions = 0;
     }
 
     public void RefreshResources() {

@@ -100,15 +100,16 @@ public class DialogueController : MonoBehaviour {
         instance = this;
     }
 	
-	void FixedUpdate () {
+	void Update () {
         if (isRunning && isReady) {
             // Doesn't currently have text to print or printed
             if (!isTypewriting) {
+                while (!ParseLine()) {} // Parse until we find either the scripts' end or a new dialogue line.
                 HideArrow();
-                ParseLine();
+                return;
             }
             // Is handling text, mouse button pressed
-            else if (Input.GetMouseButtonDown(0)) {
+            if (Input.GetMouseButtonDown(0)) {
                 // If the text has been fully printed, go to next line
                 if (typewriterPosition >= currentText.Length) {
                     AdvanceLine();
@@ -259,12 +260,13 @@ public class DialogueController : MonoBehaviour {
         return s;
     }
 
-    void ParseLine() {
+    bool ParseLine() {
+        Debug.Log("Next line " + Time.frameCount);
         // Check for the end of the script
         if (lineIndex >= currentEvent.script.Count) {
             HideArrow();
             Hide();
-            return;
+            return true;
         }
 
         // Update current line
@@ -294,6 +296,9 @@ public class DialogueController : MonoBehaviour {
                     continue;
                 }
             }
+            // Move to next line
+            ++lineIndex;
+            return false;
         }
         // Lines that don't start with % are text to be printed
         else {
@@ -302,9 +307,11 @@ public class DialogueController : MonoBehaviour {
 
             isTypewriting = true;
             typewriterPosition = 0;
+            // Move to next line
+            ++lineIndex;
+            return true;
         }
-        // Move to next line
-        ++lineIndex;
+
     }
 
     void ParseAssignment(string statement) {
