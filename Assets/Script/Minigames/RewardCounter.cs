@@ -31,14 +31,17 @@ public class RewardCounter : MonoBehaviour {
 
     public void AddHighHit() {
         rewards[resource] += minigame.highYield;
+        ++GameState.instance.lastGameRepetitions;
     }
 
     public void AddMidHit() {
         rewards[resource] += minigame.midYield;
+        ++GameState.instance.lastGameRepetitions;
     }
 
     public void AddLowHit() {
         rewards[resource] += minigame.lowYield;
+        ++GameState.instance.lastGameRepetitions;
     }
 
     public void AddRandomBonus() {
@@ -57,9 +60,10 @@ public class RewardCounter : MonoBehaviour {
 
         foreach (string key in rewards.Keys) {
             if (rewards[key] > 0) {
-                GameState.instance.resources[key] += rewards[key];
-                Debug.Log("Add " + key + ", " + rewards[key]);
-                resourcesListView.Add(key, rewards[key]);
+                int reward = (int)(rewards[key] * GameState.instance.activeMultipliers[key]);
+                GameState.instance.resources[key] += reward;
+                Debug.Log("Add " + key + ", " + reward);
+                resourcesListView.Add(key, reward);
             }
         }
     }

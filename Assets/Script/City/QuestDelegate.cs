@@ -14,7 +14,11 @@ public class QuestDelegate : ListView.Delegate {
         questData = GameData.instance.GetQuestData(questNumber);
         questPopup = args[1] as QuestPopup;
         string buildingName = GameData.instance.GetBuildingData(questData.builds).name;
-        GetComponentInChildren<Text>().text = buildingName;
+        Text txt = GetComponentInChildren<Text>();
+        if (buildingName.Contains(" "))
+            txt.text = buildingName.Split(' ')[0];
+        else
+            txt.text = buildingName;
     }
 
     public void OpenQuestPopup() {

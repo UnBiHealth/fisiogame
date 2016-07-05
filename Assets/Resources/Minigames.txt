@@ -24,6 +24,11 @@
 			{
 				"yield": 14,
 				"odds": 0.3
+			},
+			"Coal": 
+			{
+				"yield": 10,
+				"odds": 0.4
 			}
 		}
 	},
@@ -34,11 +39,6 @@
 		"lowYield": 5,
 		"bonuses": 
 		{
-			"Copper": 
-			{
-				"yield": 10,
-				"odds": 0.4
-			},
 			"Gold":
 			{
 				"yield": 20,

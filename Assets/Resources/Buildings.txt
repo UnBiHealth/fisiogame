@@ -1,11 +1,15 @@
 {
 	"House":
 	{
-		"name": "Casa"
+		"name": "Casa",
+		"multiplier": 1.02,
+		"multipliedYield": "Wood"
 	},
 	"ToolShack":
 	{
-		"name": "Casa de Ferramentas"
+		"name": "Casa de Ferramentas",
+		"multiplier": 1.05,
+		"multipliedYield": "Wood"
 	},
 	"SheepPen":
 	{
@@ -21,11 +25,15 @@
 	},
 	"Smithy":
 	{
-		"name": "Casa de Forja"
+		"name": "Casa de Forja",
+		"multiplier": 1.05,
+		"multipliedYield": "Stone"
 	},
 	"MayorHall":
 	{
-		"name": "Prefeitura"
+		"name": "Prefeitura",
+		"multiplier": 1.05,
+		"multipliedYield": "Global"
 	},
 	"Windmill":
 	{
@@ -41,7 +49,9 @@
 	},
 	"Stable":
 	{
-		"name": "Estábulo"
+		"name": "Estábulo",
+		"multiplier": 1.05,
+		"multipliedYield": "Metal"
 	},
 	"PaperMaker":
 	{
@@ -71,22 +81,32 @@
 	},
 	"Studio":
 	{
-		"name": "Estúdio"
+		"name": "Estúdio",
+		"yield": "Marble",
+		"yieldAmount": 0.1,
 	},
 	"Tavern":
 	{
-		"name": "Taverna"
+		"name": "Taverna",
+		"multiplier": 1.05,
+		"multipliedYield": "Global"
 	},
 	"Museum":
 	{
-		"name": "Museu"
+		"name": "Museu",
+		"multiplier": 1.05,
+		"multipliedYield": "Global"
 	},
 	"Statue":
 	{
-		"name": "Estátua do Fundador"
+		"name": "Estátua do Fundador",
+		"multiplier": 1.10,
+		"multipliedYield": "Global"
 	},
 	"Library":
 	{
-		"name": "Biblioteca Municipal"
+		"name": "Biblioteca Municipal",
+		"multiplier": 1.10,
+		"multipliedYield": "Global"
 	}
 }

@@ -199,7 +199,7 @@
 		"name": "O Mundo das Artes",
 		"description": "É na arte que o homem se ultrapassa definitivamente.",
 		"requirements": {
-			"Wood": 300,
+			"Stone": 300,
 			"Fabric": 100,
 			"Gold": 50
 		},
@@ -215,9 +215,9 @@
 		"name": "Fim da Lei Seca",
 		"description": "Acredite, a taverna vai deixar os trabalhadores mais motivados.",
 		"requirements": {
-			"Wood": 200,
 			"Stone": 150,
-			"Food": 150
+			"Food": 150,
+			"Coal": 150,
 		},
 		"builds": "Tavern",
 		"unlockedBy": 11,
@@ -249,7 +249,7 @@
 		"requirements": {
 			"Stone": 200,
 			"Marble": 200,
-			"Copper": 100
+			"Brick": 100
 		},
 		"builds": "Statue",
 		"unlockedBy": 14,
@@ -263,7 +263,7 @@
 		"name": "Do A ao Z",
 		"description": "Aquele que destrói um bom livro, mata a própria razão.",
 		"requirements": {
-			"Wood": 300,
+			"Stone": 300,
 			"Marble": 150,
 			"Paper": 300
 		},

@@ -22,13 +22,13 @@ public class SceneController : MonoBehaviour {
     [SerializeField]
     QuestPopup questPopup;
     [SerializeField]
-    MinigameLoader minigameLoader;
-    [SerializeField]
     GameObject woodcuttingButton;
     [SerializeField]
     GameObject miningButton;
     [SerializeField]
     GameObject smithingButton;
+    [SerializeField]
+    CharacterSpawner spawner;
     
     public static SceneController instance { get; private set; }
 
@@ -61,6 +61,7 @@ public class SceneController : MonoBehaviour {
         RefreshBuildings();
         RefreshMinigames();
         RefreshResources();
+        spawner.Spawn();
 
 	}
 	
@@ -86,7 +87,7 @@ public class SceneController : MonoBehaviour {
     }
 
     public void AttemptToStart(string minigame) {
-        minigameLoader.AttemptConnection(minigame);
+        SceneManager.LoadScene(minigame);
     }
 
     IEnumerator StartVillageArrival() {
@@ -162,15 +163,27 @@ public class SceneController : MonoBehaviour {
             else {
                 Debug.Log(building.name);
                 if (building.data.triggersMultiplier) {
-                    activeMultipliers[building.data.multipliedYield] += building.data.multiplier - 1;
+                    if (building.data.multipliedYield == "Global") {
+                        var keys = new List<string>(activeMultipliers.Keys);
+                        foreach (var key in keys) {
+                            activeMultipliers[key] += (building.data.multiplier - 1);
+                        }
+                    }
+                    else
+                        activeMultipliers[building.data.multipliedYield] += building.data.multiplier - 1;
                 }
                 if (building.data.triggersYield && GameState.instance.lastGameRepetitions > 0) {
-                    GameState.instance.resources[building.data.yield] += (int)Mathf.Floor(building.data.yieldAmount * GameState.instance.lastGameRepetitions);
+                    int reward = (int)(building.data.yieldAmount * GameState.instance.lastGameRepetitions * activeMultipliers[building.data.yield]);
+                    GameState.instance.resources[building.data.yield] += reward;
                 }
             }
         }
         GameState.instance.activeMultipliers = activeMultipliers;
         GameState.instance.lastGameRepetitions = 0;
+
+        foreach (var pair in activeMultipliers) {
+            Debug.Log(pair.Key + " x " + pair.Value);
+        }
     }
 
     public void RefreshResources() {

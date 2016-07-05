@@ -106,8 +106,12 @@
 			"%do:hideRight",
 			"...",
 			"%leftSpeaker=farmer",
-			"Olar!"
-			
+			"Olar!",
+			"Meu nome é Jorge! Sou o cabra da fazenda!",
+			"...ou seria, se a gente tivesse uma.",
+			"Seguinte: quero uma <color=#cc0000>horta</color> e um <color=#cc0000>cercado de ovelhas.</color>",
+			"Me ajuda com isso que eu ajudo ocê depois.",
+			"Brigadão!"
 		]		
 	},
 	"Demo":
