@@ -150,7 +150,6 @@ public class SceneController : MonoBehaviour {
     public void RefreshBuildings() {
         Building[] buildings = buildingContainer.transform.GetComponentsInChildren<Building>(true);
         Dictionary<string, float> activeMultipliers = new Dictionary<string, float>();
-        Debug.Log("What the buildings " + buildings.Length);
 
         foreach (string resource in GameState.instance.resources.Keys) {
             activeMultipliers[resource] = 1;

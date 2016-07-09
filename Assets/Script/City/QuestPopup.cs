@@ -22,6 +22,7 @@ public class QuestPopup : MonoBehaviour {
 
 	public void SetUp(GameData.QuestData data, int questNumber) {
 		gameObject.SetActive(true);
+        requirementsListView.Clear();
 
         GameData.BuildingData building = GameData.instance.GetBuildingData(data.builds);
         GameData.CharacterData character = GameData.instance.GetCharacterData(data.questGiver);
@@ -34,9 +35,9 @@ public class QuestPopup : MonoBehaviour {
         flavorText.text = data.description;
 
 		bool requirementsMet = true;
-        foreach (var pair in data.requirements) {
-			string resource = pair.Key;
-			int required = pair.Value;
+        foreach (var key in data.requirements.Keys) {
+			string resource = key;
+            int required = data.requirements[key];
 			int obtained = GameState.instance.resources[resource];
 			requirementsListView.Add(resource, required, obtained);
 			if (required > obtained) {

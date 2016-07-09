@@ -20,6 +20,8 @@ public class QuestRequirementDelegate : ListView.Delegate {
         required = (int) args[1];
         obtained = (int) args[2];
 
+        Debug.Log("Quest Resource: " + resource);
+
         GameData.ResourceData resourceData = GameData.instance.GetResourceData(resource);
         if (obtained >= required) {
             icon.sprite = resourceData.highlightedIcon;

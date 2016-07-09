@@ -31,8 +31,8 @@ public class CharacterSpawner : MonoBehaviour {
             characters.Add(questGiver);
         }
 
-
         foreach (string character in characters) {
+            Debug.Log("Placing " + character);
             int random = Random.Range(0, availableSlots.Count);
             int slot = availableSlots[random];
             slots[slot].sprite = GameData.instance.GetCharacterData(character).miniSprite;
