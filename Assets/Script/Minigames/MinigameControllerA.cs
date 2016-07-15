@@ -36,6 +36,8 @@ public class MinigameControllerA : MonoBehaviour {
 	Button exitButton;
 	[SerializeField]
 	RewardCounter rewardCounter;
+    [SerializeField]
+    RecIcon recIcon;
 
 	void Start () {
 		// Get the animator and start moving
@@ -110,6 +112,7 @@ public class MinigameControllerA : MonoBehaviour {
 		// Wait for the punch value to change. When it does, an attack is triggered
 		else if (state == CharacterState.ATTACK_WAIT) {
 			if (punch > -1.0f) {
+                recIcon.Hide();
 				// If damage is three, trigger strong attack animation
 				if (punch > 0.66f) {
 					animator.SetTrigger("strongAttack");

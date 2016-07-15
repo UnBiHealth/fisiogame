@@ -3,7 +3,7 @@
 		"name": "Um Novo Começo",
 		"description": "Construa uma casa para poder se instalar na vila.",
 		"requirements": {
-			"Wood": 100
+			"Wood": 50
 		},
 		"builds": "House",
 		"unlockedBy": 0,

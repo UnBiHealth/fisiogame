@@ -45,9 +45,16 @@ public class GameControl : MonoBehaviour, UOSApplication, UOS.Logger
         punchPin.name = "punch";
         punchPin.type = UhpType.Continuous(0, 1); // [-1, 1)
         PinDriver.instance.Add(punchPin);
+
+        var recPin = new UhpPin();
+        recPin.name = "rec";
+        recPin.type = UhpType.Discrete(0, 2);
+        PinDriver.instance.Add(recPin);
+
         PinDriver.instance.PinChanged += OnPinChanged;
 
         registeredEvents.Add(punchPin.name, new List<EventHandler>());
+        registeredEvents.Add(recPin.name  , new List<EventHandler>());
     }
 
 

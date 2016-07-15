@@ -108,11 +108,22 @@
 			"%leftSpeaker=farmer",
 			"Olar!",
 			"Meu nome é Jorge! Sou o cabra da fazenda!",
-			"...ou seria, se a gente tivesse uma.",
+			"...ou seria, se tivesse uma por aqui.",
 			"Seguinte: quero uma <color=#cc0000>horta</color> e um <color=#cc0000>cercado de ovelhas.</color>",
 			"Me ajuda com isso que eu ajudo ocê depois.",
 			"Brigadão!"
 		]		
+	},
+	"SmallDemo":
+	{
+		"script": [
+			"%rightSpeaker=lumberjack",
+			"%leftSpeaker=mayor",
+			"%frameInterval=2",
+			"Você deveria ser mais gentil.",
+			"%do:highlightRight",
+			"Mas eu sou um <i>docinho!</i>"
+		]
 	},
 	"Demo":
 	{
